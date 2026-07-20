@@ -1,45 +1,45 @@
-# 🪷 Cung Trời Hóa Lạc (v1.2.3)
+# 🌌 Cung Trời Hóa Lạc — Tích Phước Báo & Mở Khóa Thần Thông
 
-> **Sổ Tích Phước Giúp Người & Mở Khóa Thần Thông Cõi Hóa Lạc Thiên**
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
-**Cung Trời Hóa Lạc** là ứng dụng web đơn trang (Single Page Application - SPA) theo dõi tiến trình làm việc thiện, tích lũy điểm **Phước Báo** và quy đổi thành **Phép Thần Thông** trên cõi Hóa Lạc Thiên. Ứng dụng mang giao diện Dark Mode hiện đại, tinh tế, tối ưu hóa cho trải nghiệm di động và các trình duyệt web.
+Ứng dụng Web tương tác giúp ghi nhận & theo dõi tiến trình **Tích Phước Báo** qua các việc làm thiện nguyện thực tế. Mỗi mốc điểm phước đạt được sẽ tự động mở khóa các cấp độ **Thần Thông & Quyền Phép** mô phỏng cảnh giới cõi **Trời Hóa Lạc**.
 
----
-
-## ✨ Tính Năng Chính (v1.2.3)
-
-* 💛 **Hệ Thống Nhiệm Vụ Giúp Người:** Danh sách các công đức thực tế (Phát bữa ăn miễn phí, ủng hộ áo ấm, hiến máu nhân đạo, v.v.) giúp nhận điểm phước báo tương ứng.
-* 🔒 **Cơ Chế Khóa/Mở Tùy Chỉnh:** Người dùng phải hoàn thành ít nhất 1 nhiệm vụ thiện nguyện ban đầu mới có thể mở khóa bảng **Tùy Chỉnh Phước Báo** tự do.
-* 🔮 **500 Phép Thần Thông:** Tự động mở khóa các tầng thần thông dựa trên mốc phước đạt được (mỗi 100 Phước Báo = 1 Phép):
-  * **Phép 1 – 50:** Hóa Hiện Y Phục & Thực Phẩm.
-  * **Phép 51 – 150:** Khởi Tạo Cung Điện & Cảnh Trí.
-  * **Phép 151 – 300:** Tịnh Nhãn & Phi Hành Thời Không.
-  * **Phép 301 – 450:** Biến Hóa Thần Thông & Diễn Xướng Pháp Âm.
-  * **Phép 451 – 500:** Đại Tự Tại Viên Mãn Hóa Lạc Thiên.
-* 📊 **Thanh Tiến Trình & Chỉ Số:** Theo dõi trực quan phần trăm hoàn thành mốc tối đa 50.000 Phước Báo.
-* 💾 **Lưu Trữ Tự Động (LocalStorage):** Lưu giữ điểm phước báo và trạng thái mở khóa trên thiết bị mà không cần đăng ký tài khoản.
+> **⚡ Điểm nổi bật:** Tích hợp cơ chế **Đồng bộ Đám mây (Realtime Sync)** — Mọi thay đổi điểm số trên một thiết bị sẽ lập tức cập nhật thời gian thực trên tất cả các màn hình khác đang mở web.
 
 ---
 
-## 📱 Hướng Dẫn Chạy Ứng Dụng
+## 🌟 Tính Năng Chính
 
-### 1. Trên Điện Thoại (Sử dụng Acode hoặc Trình duyệt)
-1. Tải ứng dụng **Acode** từ Google Play / App Store (hoặc dùng bất kỳ ứng dụng xem HTML nào).
-2. Tạo một file mới tên là `index.html`.
-3. Nhập/Dán toàn bộ mã nguồn HTML của **v1.2.3** vào file vừa tạo và bấm **Lưu (Save)**.
-4. Nhấn nút **Play / Preview** trên góc màn hình để chạy ứng dụng ngay lập tức.
-
-### 2. Trên Máy Tính (PC / Laptop)
-1. Tải hoặc lưu mã nguồn thành file `index.html`.
-2. Nhấp đôi chuột vào file `index.html` để mở trực tiếp bằng bất kỳ trình duyệt nào (Chrome, Edge, Firefox, Safari).
+- **🔄 Đồng bộ đa thiết bị (Realtime Sync):** Kết nối trực tiếp với Firebase Realtime Database. Dữ liệu Phước Báo luôn nhất quán giữa máy tính, điện thoại và người dùng khác nhau.
+- **✨ 500 Cấp Độ Phép Hóa Lạc:** Cứ mỗi **100 Phước Báo** thu thập được, bạn sẽ mở khóa 1 Phép Thần Thông tương ứng:
+  - *Phép 1–50:* Thuận Ý Y Phục & Thực Phẩm
+  - *Phép 51–150:* Biến Cảnh Cung Điện & Lâu Đài
+  - *Phép 151–300:* Tịnh Nhãn & Phi Hành Thời Không
+  - *Phép 301–450:* Diễn Xướng Pháp Âm An Lạc
+  - *Phép 451–500:* Đại Tự Tại Viên Mãn
+- **📋 Danh Sách Nhiệm Vụ Giúp Người:** Gợi ý các hành động thiết thực (Phát cơm, hiến máu, bảo trợ học sinh, xây nhà tình nghĩa...) kèm phần thưởng Phước Báo tương ứng.
+- **🔒 Bảng Quản Trị Tùy Chỉnh (Admin Control):** Tích hợp tính năng cộng/trừ điểm thủ công hoặc reset dữ liệu, bảo mật bằng Admin Key.
 
 ---
 
-## 📂 Cấu Trúc Mã Nguồn
+## ⚙️ Thông Số Cấu HÌnh Mặc Định
 
-Ứng dụng được viết theo dạng **Single File** (Tất cả trong 1 file HTML) giúp việc lưu trữ, di chuyển và thực thi vô cùng linh hoạt:
+| Thông số | Giá trị mặc định |
+| :--- | :--- |
+| **Tỷ lệ quy đổi** | `100 Phước Báo` = `1 Phép Thần Thông` |
+| **Mục tiêu tối đa** | `50.000 Phước Báo` (500 Phép) |
+| **Admin Key** | `51007Panh` |
+| **Database** | Firebase Realtime Database |
 
-```text
-cung-troi-hoa-lac/
-├── index.html        # Bao gồm HTML5 structure, CSS3 styling và ES6 JavaScript
-└── README.md         # Document hướng dẫn sử dụng và thông tin dự án
+---
+
+## 🚀 Hướng Dẫn Chạy Dự Án
+
+### 1. Chạy cục bộ (Local)
+Không cần cài đặt Node.js hay Build tool phức tạp:
+1. Clone repository về máy:
+   ```bash
+   git clone [https://github.com/username/cung-troi-hoa-lac.git](https://github.com/username/cung-troi-hoa-lac.git)
