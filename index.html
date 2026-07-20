@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cung Trời Hóa Lạc - Tích Phước & Quyền Phép</title>
+    
+    <!-- Firebase SDK (Dùng để đồng bộ dữ liệu giữa các máy) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
     <style>
         :root {
             --primary-color: #ffd700;
@@ -55,6 +60,13 @@
             font-size: 0.8rem;
             color: #94a3b8;
             margin-bottom: 15px;
+        }
+
+        .status-sync {
+            text-align: center;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            color: #10b981;
         }
 
         /* Navigation Tabs */
@@ -331,6 +343,7 @@
 <div class="container">
     <h1>Cung Trời Hóa Lạc</h1>
     <div class="subtitle">Sổ Tích Phước Giúp Người & Mở Khóa Thần Thông</div>
+    <div class="status-sync" id="syncStatus">🔄 Đang kết nối Đám Mây...</div>
 
     <!-- Navigation Tabs -->
     <div class="tabs">
@@ -345,7 +358,7 @@
         </div>
         <div class="progress-text">
             <span>Tiến trình: <strong id="percentText">0%</strong></span>
-            <span>Tối đa: 5.000.000 Phước</span>
+            <span>Tối đa: 5.000.000.000 Phước</span>
         </div>
     </div>
 
@@ -374,7 +387,7 @@
         <div class="key-box" id="keyBox">
             <div style="font-size: 0.8rem; color: #cbd5e1;">Nhập Key để mở khóa tính năng tùy chỉnh điểm:</div>
             <div class="key-input-group">
-                <input type="password" id="keyInput" class="key-input" placeholder="Nhập Key (Mặc định: 51007Panh)">
+                <input type="password" id="keyInput" class="key-input" placeholder="Nhập Key (Ví dụ: 51007Panh)">
                 <button class="btn-unlock" onclick="unlockCustom()">Mở Khóa</button>
             </div>
             <div id="keyError" style="color: var(--danger-color); font-size: 0.75rem; margin-top: 5px; display: none;">Key không đúng, vui lòng thử lại!</div>
@@ -393,7 +406,7 @@
 
     <!-- TAB 2: MÔ TẢ CÁC PHÉP THẦN THÔNG -->
     <div id="tab-phep" class="tab-content">
-        <div class="section-title">Cung Trời Hóa Lạc - Danh Sách 500 Phép</div>
+        <div class="section-title">Cung Trời Hóa Lạc - Danh Sách 5.000.000.000 Phép</div>
         <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px;">
             Mỗi 100 Phước Báo giúp bạn tự biến hóa ra cảnh trí, niềm vui và quyền năng tương ứng ở cõi Trời Hóa Lạc.
         </p>
@@ -402,11 +415,23 @@
 </div>
 
 <script>
+    // -------------------------------------------------------------
+    // CẤU HÌNH ĐỒNG BỘ ĐÁM MÂY (FIREBASE REALTIME DATABASE)
+    // -------------------------------------------------------------
+    const firebaseConfig = {
+        databaseURL: "https://hoa-lac-thien-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const phuocRef = db.ref('global_phuoc_bao');
+
     const MAX_PHUOC = 50000;
     const PHUOC_PER_PHEP = 100;
-    
-    // Key bí mật để mở khóa tùy chỉnh (Bạn có thể đổi chuỗi này thành bất kỳ key nào bạn muốn)
-    const SECRET_KEY = "123456";
+    const SECRET_KEY = "51007Panh";
+
+    let currentPhuoc = 0;
 
     // Danh sách nhiệm vụ
     const tasks = [
@@ -448,7 +473,29 @@
     }
 
     const magicData = generateMagicData();
-    let currentPhuoc = parseInt(localStorage.getItem('user_phuoc_bao_v2')) || 0;
+
+    // -------------------------------------------------------------
+    // ĐỒNG BỘ DỮ LIỆU REALTIME VỚI TẤT CẢ CÁC MÁY KHÁC
+    // -------------------------------------------------------------
+    phuocRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data !== null) {
+            currentPhuoc = data;
+        } else {
+            currentPhuoc = 0;
+            phuocRef.set(0);
+        }
+        document.getElementById('syncStatus').innerText = "⚡ Đã đồng bộ với đám mây (Realtime)";
+        document.getElementById('syncStatus').style.color = "#10b981";
+        updateUI();
+    }, (error) => {
+        document.getElementById('syncStatus').innerText = "⚠️ Mất kết nối đám mây, đang dùng dữ liệu nội bộ";
+        document.getElementById('syncStatus').style.color = "#ef4444";
+    });
+
+    function saveToCloud(val) {
+        phuocRef.set(val);
+    }
 
     function updateUI() {
         if (currentPhuoc < 0) currentPhuoc = 0;
@@ -462,11 +509,9 @@
         document.getElementById('progressBar').style.width = percent + '%';
         document.getElementById('percentText').innerText = percent + '%';
 
-        localStorage.setItem('user_phuoc_bao_v2', currentPhuoc);
         renderMagicList(phep);
     }
 
-    // Xử lý Mở / Khóa Key
     function unlockCustom() {
         const inputKey = document.getElementById('keyInput').value;
         const keyError = document.getElementById('keyError');
@@ -491,14 +536,15 @@
     }
 
     function changePhuoc(amount) {
-        currentPhuoc += amount;
-        updateUI();
+        let newPhuoc = currentPhuoc + amount;
+        if (newPhuoc < 0) newPhuoc = 0;
+        if (newPhuoc > MAX_PHUOC) newPhuoc = MAX_PHUOC;
+        saveToCloud(newPhuoc);
     }
 
     function resetData() {
-        if (confirm("Bạn có chắc chắn muốn làm lại từ đầu (reset hết Phước Báo và Phép)?")) {
-            currentPhuoc = 0;
-            updateUI();
+        if (confirm("XÁC NHẬN: Bạn có chắc chắn muốn làm lại từ đầu? Số điểm trên TOÀN BỘ CÁC MÁY sẽ bị reset về 0.")) {
+            saveToCloud(0);
         }
     }
 
@@ -546,7 +592,6 @@
 
     // Khởi tạo
     renderTasks();
-    updateUI();
 </script>
 
 </body>
