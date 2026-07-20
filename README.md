@@ -31,7 +31,7 @@
 | :--- | :--- |
 | **Tỷ lệ quy đổi** | `100 Phước Báo` = `1 Phép Thần Thông` |
 | **Mục tiêu tối đa** | `50.000 Phước Báo` (500 Phép) |
-| **Admin Key** | `51007Panh` |
+| ** Key** | `*******` |
 | **Database** | Firebase Realtime Database |
 
 ---
