@@ -1,598 +1,246 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cung Trời Hóa Lạc - Tích Phước & Quyền Phép</title>
-    
-    <!-- Firebase SDK (Dùng để đồng bộ dữ liệu giữa các máy) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luật Nhân Quả - Tích Phước Hoá Lạc</title>
+  <style>
+    :root {
+      --primary: #ffd700;
+      --bg: #121212;
+      --card-bg: #1e1e2e;
+      --text: #e0e0e0;
+      --accent: #ff9800;
+    }
 
-    <style>
-        :root {
-            --primary-color: #ffd700;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --accent-color: #f59e0b;
-            --success-color: #10b981;
-            --danger-color: #ef4444;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-size: 24px;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 550px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
+    p.subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
 
-        h1 {
-            text-align: center;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
+    .stats-card {
+      background-color: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
 
-        .subtitle {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 15px;
-        }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
 
-        .status-sync {
-            text-align: center;
-            font-size: 0.75rem;
-            margin-bottom: 10px;
-            color: #10b981;
-        }
+    .stat-value {
+      font-weight: bold;
+      color: var(--primary);
+    }
 
-        /* Navigation Tabs */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+    .progress-bar-container {
+      width: 100%;
+      background-color: #333;
+      border-radius: 10px;
+      height: 18px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
 
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: #334155;
-            color: #94a3b8;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff9800, #ffd700);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
 
-        .tab-btn.active {
-            background: var(--primary-color);
-            color: #0f172a;
-        }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
-        .tab-content {
-            display: none;
-        }
+    button {
+      background-color: var(--card-bg);
+      color: #fff;
+      border: 1px solid var(--accent);
+      padding: 12px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
+    button:active {
+      transform: scale(0.96);
+      background-color: var(--accent);
+    }
 
-        /* Progress Bar */
-        .progress-box {
-            margin-bottom: 15px;
-        }
+    .magic-section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 15px;
+      border: 1px dashed var(--primary);
+      text-align: center;
+    }
 
-        .progress-bar-bg {
-            background-color: #334155;
-            height: 14px;
-            border-radius: 7px;
-            overflow: hidden;
-            margin-bottom: 6px;
-            border: 1px solid #475569;
-        }
+    .magic-count {
+      font-size: 28px;
+      color: var(--primary);
+      font-weight: bold;
+      margin: 10px 0;
+    }
 
-        .progress-bar-fill {
-            background: linear-gradient(90deg, #f59e0b, #ffd700);
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
+    .log-container {
+      margin-top: 20px;
+      background-color: #0a0a10;
+      border-radius: 8px;
+      padding: 10px;
+      height: 120px;
+      overflow-y: auto;
+      font-size: 12px;
+      border: 1px solid #222;
+    }
 
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #cbd5e1;
-        }
+    .log-item {
+      margin-bottom: 4px;
+      color: #bbb;
+    }
 
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .stat-card {
-            background: rgba(15, 23, 42, 0.6);
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #334155;
-        }
-
-        .stat-title {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-bottom: 4px;
-        }
-
-        .stat-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        /* Task List */
-        .section-title {
-            font-size: 0.95rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .task-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 220px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            padding-right: 5px;
-        }
-
-        .task-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .task-info {
-            flex: 1;
-        }
-
-        .task-name {
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #f8fafc;
-        }
-
-        .task-desc {
-            font-size: 0.75rem;
-            color: #94a3b8;
-        }
-
-        .task-reward {
-            font-size: 0.8rem;
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        .btn-do-task {
-            background: var(--success-color);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        /* Key Security Box */
-        .key-box {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px dashed var(--accent-color);
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .key-input-group {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-            justify-content: center;
-        }
-
-        .key-input {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            background: #0f172a;
-            color: #fff;
-            font-size: 0.85rem;
-            outline: none;
-            width: 60%;
-        }
-
-        .btn-unlock {
-            background: var(--accent-color);
-            color: #0f172a;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        /* Action Buttons */
-        .actions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        button.btn-ctrl {
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .btn-add { background-color: #10b981; color: white; }
-        .btn-sub { background-color: #ef4444; color: white; }
-        .btn-reset { grid-column: span 2; background-color: #475569; color: white; }
-        .btn-lock { grid-column: span 2; background-color: #334155; color: var(--primary-color); border: 1px solid var(--primary-color); }
-
-        /* Magic List */
-        .magic-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .magic-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .magic-card.locked {
-            opacity: 0.5;
-            border-color: #1e293b;
-        }
-
-        .magic-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .magic-title {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .magic-req {
-            font-size: 0.75rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: #334155;
-            color: #cbd5e1;
-        }
-
-        .magic-card.unlocked .magic-req {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-        }
-
-        .magic-desc {
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            line-height: 1.3;
-        }
-    </style>
+    .log-item.highlight {
+      color: var(--primary);
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Cung Trời Hóa Lạc</h1>
-    <div class="subtitle">Sổ Tích Phước Giúp Người & Mở Khóa Thần Thông</div>
-    <div class="status-sync" id="syncStatus">🔄 Đang kết nối Đám Mây...</div>
+  <div class="container">
+    <h1>Luật Nhân Quả</h1>
+    <p class="subtitle">Tích Luỹ Phước Báo - Cung Trời Hoá Lạc</p>
 
-    <!-- Navigation Tabs -->
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('tab-phuoc')">Tích Phước Báo</button>
-        <button class="tab-btn" onclick="switchTab('tab-phep')">Mô Tả Phép (Hóa Lạc)</button>
+    <!-- Thống kê phước báo -->
+    <div class="stats-card">
+      <div class="stat-row">
+        <span>Tổng Phước Báo:</span>
+        <span class="stat-value" id="phuoc-text">0 / 5.000.000</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
     </div>
 
-    <!-- General Stats Header -->
-    <div class="progress-box">
-        <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progressBar"></div>
-        </div>
-        <div class="progress-text">
-            <span>Tiến trình: <strong id="percentText">0%</strong></span>
-            <span>Tối đa: 5.000.000.000 Phước</span>
-        </div>
+    <!-- Cung Trời Hoá Lạc -->
+    <div class="magic-section">
+      <div>Cung Trời Hoá Lạc - Phép Thuật</div>
+      <div class="magic-count" id="phep-text">0 Phép</div>
+      <small style="color: #888;">(Cứ 100 Phước Báo = 1 Phép Thuật)</small>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-title">Điểm Phước Báo</div>
-            <div class="stat-value" id="phuocBaoVal">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-title">Phép Đạt Được</div>
-            <div class="stat-value" id="phepVal">0 / 500</div>
-        </div>
+    <!-- Hành động gieo quẻ/tích phước -->
+    <h3 style="margin-top: 20px; font-size: 16px;">Tạo Thiện Hạnh (Tích Phước)</h3>
+    <div class="actions">
+      <button onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
+      <button onclick="tichPhuoc(50, 'Giúp đỡ người khó khăn')">+50 Phước (Thân)</button>
+      <button onclick="tichPhuoc(100, 'Ấn tạc kinh sách / Cung kính')">+100 Phước (Ý)</button>
+      <button onclick="tichPhuoc(500, 'Phóng sinh & Cứu mạng')">+500 Phước (Đại Thiện)</button>
     </div>
 
-    <!-- TAB 1: TÍCH PHƯỚC BÁO & NHIỆM VỤ GIÚP NGƯỜI -->
-    <div id="tab-phuoc" class="tab-content active">
-        <div class="section-title">Nhiệm Vụ Giúp Đỡ Người Khó Khăn</div>
-        <div class="task-list" id="taskList"></div>
-
-        <div class="section-title">
-            <span>Tùy Chỉnh Phước Báo</span>
-            <span id="lockStatus" style="font-size: 0.75rem; color: var(--danger-color);">🔒 Đã Khóa</span>
-        </div>
-
-        <!-- Khóa Mật Mã Key -->
-        <div class="key-box" id="keyBox">
-            <div style="font-size: 0.8rem; color: #cbd5e1;">Nhập Key để mở khóa tính năng tùy chỉnh điểm:</div>
-            <div class="key-input-group">
-                <input type="password" id="keyInput" class="key-input" placeholder="Nhập Key (Ví dụ: 51007Panh)">
-                <button class="btn-unlock" onclick="unlockCustom()">Mở Khóa</button>
-            </div>
-            <div id="keyError" style="color: var(--danger-color); font-size: 0.75rem; margin-top: 5px; display: none;">Key không đúng, vui lòng thử lại!</div>
-        </div>
-
-        <!-- Các Nút Tùy Chỉnh (Mặc định Ẩn) -->
-        <div class="actions" id="customActions" style="display: none;">
-            <button class="btn-ctrl btn-add" onclick="changePhuoc(100)">+100 Phước (+1 Phép)</button>
-            <button class="btn-ctrl btn-add" onclick="changePhuoc(1000)">+1.000 Phước (+10 Phép)</button>
-            <button class="btn-ctrl btn-sub" onclick="changePhuoc(-100)">-100 Phước</button>
-            <button class="btn-ctrl btn-sub" onclick="changePhuoc(-1000)">-1.000 Phước</button>
-            <button class="btn-ctrl btn-reset" onclick="resetData()">Làm Lại Từ Đầu</button>
-            <button class="btn-ctrl btn-lock" onclick="lockCustom()">🔒 Khóa Lại Tính Năng Tùy Chỉnh</button>
-        </div>
+    <!-- Nhật ký hành sự -->
+    <div class="log-container" id="log-box">
+      <div class="log-item">Chào mừng bạn đến với Cung Trời Hoá Lạc. Hãy bắt đầu tích phước!</div>
     </div>
+  </div>
 
-    <!-- TAB 2: MÔ TẢ CÁC PHÉP THẦN THÔNG -->
-    <div id="tab-phep" class="tab-content">
-        <div class="section-title">Cung Trời Hóa Lạc - Danh Sách 5.000.000.000 Phép</div>
-        <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px;">
-            Mỗi 100 Phước Báo giúp bạn tự biến hóa ra cảnh trí, niềm vui và quyền năng tương ứng ở cõi Trời Hóa Lạc.
-        </p>
-        <div class="magic-list" id="magicList"></div>
-    </div>
-</div>
-
-<script>
-    // -------------------------------------------------------------
-    // CẤU HÌNH ĐỒNG BỘ ĐÁM MÂY (FIREBASE REALTIME DATABASE)
-    // -------------------------------------------------------------
-    const firebaseConfig = {
-        databaseURL: "https://hoa-lac-thien-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
-
-    // Khởi tạo Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const phuocRef = db.ref('global_phuoc_bao');
-
-    const MAX_PHUOC = 50000;
-    const PHUOC_PER_PHEP = 100;
-    const SECRET_KEY = "51007Panh";
-
+  <script>
+    const MAX_PHUOC = 5000000;
     let currentPhuoc = 0;
 
-    // Danh sách nhiệm vụ
-    const tasks = [
-        { name: "Phát bữa ăn miễn phí", desc: "Tặng 1 suất cơm/cháo cho người vô gia cư", reward: 100 },
-        { name: "Ủng hộ áo ấm mùa đông", desc: "Tặng quần áo cũ/mới cho trẻ em vùng cao", reward: 200 },
-        { name: "Quyên góp quỹ hiếu học", desc: "Giúp đỡ học sinh nghèo hiếu học vượt khó", reward: 500 },
-        { name: "Hiến máu nhân đạo", desc: "Trao giọt máu đào, cứu người khó khăn", reward: 1000 },
-        { name: "Xây nhà tình nghĩa", desc: "Đóng góp xây dựng mái ấm cho hộ nghèo", reward: 2000 },
-        { name: "Bảo trợ bệnh nhân nghèo", desc: "Hỗ trợ viện phí cho ca mổ hiểm nghèo", reward: 5000 }
-    ];
-
-    function generateMagicData() {
-        let magics = [];
-        for (let i = 1; i <= 500; i++) {
-            let reqPhuoc = i * 100;
-            let typeName = "";
-            let desc = "";
-
-            if (i <= 50) {
-                typeName = `Phép Thuận Ý ${i}: Hóa Hiện Y Phục & Thực Phẩm`;
-                desc = `Tự biến hóa ra các loại trang phục lộng lẫy và yến tiệc thanh tĩnh theo ý muốn.`;
-            } else if (i <= 150) {
-                typeName = `Phép Biến Cảnh ${i}: Khởi Tạo Cung Điện & Cảnh Trí`;
-                desc = `Tự tạo ra các lâu đài, vườn hoa, suối ngọc thanh thuần bằng suy nghĩ để vui chơi cùng các thiên chúng.`;
-            } else if (i <= 300) {
-                typeName = `Phép Tịnh Nhãn & Phi Hành ${i}: Tự Tại Thời Không`;
-                desc = `Bay lượn tự do trong không trung, nhìn rõ các cảnh giới vui buồn để sinh lòng từ bi.`;
-            } else if (i <= 450) {
-                typeName = `Phép Biến Hóa Thần Thông ${i}: Diễn Xướng Pháp Âm`;
-                desc = `Tạo ra âm thanh, nhạc trời dịu nhẹ giúp xoa dịu phiền nào và mang lại an lạc.`;
-            } else {
-                typeName = `Phép Đại Tự Tại ${i}: Viên Mãn Hóa Lạc Thiên`;
-                desc = `Đạt quyền năng tự chủ hoàn toàn vui lạc, tâm không còn vướng bận, sẵn sàng tiếp bước giác ngộ.`;
-            }
-
-            magics.push({ id: i, name: typeName, req: reqPhuoc, desc: desc });
-        }
-        return magics;
-    }
-
-    const magicData = generateMagicData();
-
-    // -------------------------------------------------------------
-    // ĐỒNG BỘ DỮ LIỆU REALTIME VỚI TẤT CẢ CÁC MÁY KHÁC
-    // -------------------------------------------------------------
-    phuocRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (data !== null) {
-            currentPhuoc = data;
-        } else {
-            currentPhuoc = 0;
-            phuocRef.set(0);
-        }
-        document.getElementById('syncStatus').innerText = "⚡ Đã đồng bộ với đám mây (Realtime)";
-        document.getElementById('syncStatus').style.color = "#10b981";
-        updateUI();
-    }, (error) => {
-        document.getElementById('syncStatus').innerText = "⚠️ Mất kết nối đám mây, đang dùng dữ liệu nội bộ";
-        document.getElementById('syncStatus').style.color = "#ef4444";
-    });
-
-    function saveToCloud(val) {
-        phuocRef.set(val);
+    // Khôi phục dữ liệu đã lưu nếu có
+    if (localStorage.getItem('phuoc_bao')) {
+      currentPhuoc = parseInt(localStorage.getItem('phuoc_bao')) || 0;
     }
 
     function updateUI() {
-        if (currentPhuoc < 0) currentPhuoc = 0;
-        if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
+      // Giới hạn max 5.000.000
+      if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
 
-        let phep = Math.floor(currentPhuoc / PHUOC_PER_PHEP);
-        let percent = ((currentPhuoc / MAX_PHUOC) * 100).toFixed(1);
+      // Tính số phép (100 phước = 1 phép)
+      const phepCount = Math.floor(currentPhuoc / 100);
 
-        document.getElementById('phuocBaoVal').innerText = currentPhuoc.toLocaleString('vi-VN');
-        document.getElementById('phepVal').innerText = phep.toLocaleString('vi-VN');
-        document.getElementById('progressBar').style.width = percent + '%';
-        document.getElementById('percentText').innerText = percent + '%';
+      // Tính phần trăm thanh tiến trình
+      const percent = (currentPhuoc / MAX_PHUOC) * 100;
 
-        renderMagicList(phep);
+      // Cập nhật giao diện
+      document.getElementById('phuoc-text').innerText = `${currentPhuoc.toLocaleString('vi-VN')} / ${MAX_PHUOC.toLocaleString('vi-VN')}`;
+      document.getElementById('phep-text').innerText = `${phepCount.toLocaleString('vi-VN')} Phép`;
+      document.getElementById('progress-bar').style.width = `${percent}%`;
+
+      // Lưu vào bộ nhớ máy
+      localStorage.setItem('phuoc_bao', currentPhuoc);
     }
 
-    function unlockCustom() {
-        const inputKey = document.getElementById('keyInput').value;
-        const keyError = document.getElementById('keyError');
+    function tichPhuoc(amount, actionName) {
+      if (currentPhuoc >= MAX_PHUOC) {
+        addLog("Bạn đã đạt tối đa 5.000.000 Phước Báo! Phước đức vô lượng.");
+        return;
+      }
 
-        if (inputKey === SECRET_KEY) {
-            document.getElementById('keyBox').style.display = 'none';
-            document.getElementById('customActions').style.display = 'grid';
-            document.getElementById('lockStatus').innerText = '🔓 Đã Mở Khóa';
-            document.getElementById('lockStatus').style.color = 'var(--success-color)';
-            keyError.style.display = 'none';
-            document.getElementById('keyInput').value = '';
-        } else {
-            keyError.style.display = 'block';
-        }
+      const oldPhep = Math.floor(currentPhuoc / 100);
+      currentPhuoc += amount;
+      const newPhep = Math.floor(currentPhuoc / 100);
+
+      updateUI();
+
+      let message = `Bạn đã làm: "${actionName}" -> +${amount} Phước Báo.`;
+      addLog(message);
+
+      // Nếu tích đủ thêm phép mới
+      if (newPhep > oldPhep) {
+        addLog(`✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm ${newPhep - oldPhep} Phép Thuật!`, true);
+      }
     }
 
-    function lockCustom() {
-        document.getElementById('keyBox').style.display = 'block';
-        document.getElementById('customActions').style.display = 'none';
-        document.getElementById('lockStatus').innerText = '🔒 Đã Khóa';
-        document.getElementById('lockStatus').style.color = 'var(--danger-color)';
+    function addLog(text, isHighlight = false) {
+      const logBox = document.getElementById('log-box');
+      const item = document.createElement('div');
+      item.className = isHighlight ? 'log-item highlight' : 'log-item';
+      
+      const time = new Date().toLocaleTimeString('vi-VN');
+      item.innerText = `[${time}] ${text}`;
+
+      logBox.insertBefore(item, logBox.firstChild);
     }
 
-    function changePhuoc(amount) {
-        let newPhuoc = currentPhuoc + amount;
-        if (newPhuoc < 0) newPhuoc = 0;
-        if (newPhuoc > MAX_PHUOC) newPhuoc = MAX_PHUOC;
-        saveToCloud(newPhuoc);
-    }
-
-    function resetData() {
-        if (confirm("XÁC NHẬN: Bạn có chắc chắn muốn làm lại từ đầu? Số điểm trên TOÀN BỘ CÁC MÁY sẽ bị reset về 0.")) {
-            saveToCloud(0);
-        }
-    }
-
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
-        event.target.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
-    }
-
-    function renderTasks() {
-        const taskContainer = document.getElementById('taskList');
-        taskContainer.innerHTML = tasks.map(t => `
-            <div class="task-card">
-                <div class="task-info">
-                    <div class="task-name">${t.name}</div>
-                    <div class="task-desc">${t.desc}</div>
-                </div>
-                <div style="text-align: right;">
-                    <div class="task-reward">+${t.reward} Phước</div>
-                    <button class="btn-do-task" onclick="changePhuoc(${t.reward})">Làm</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function renderMagicList(unlockedPhepCount) {
-        const magicContainer = document.getElementById('magicList');
-        let displayList = magicData.filter(m => m.id <= Math.max(unlockedPhepCount + 5, 10));
-
-        magicContainer.innerHTML = displayList.map(m => {
-            let isUnlocked = m.id <= unlockedPhepCount;
-            return `
-                <div class="magic-card ${isUnlocked ? 'unlocked' : 'locked'}">
-                    <div class="magic-header">
-                        <span class="magic-title">Phép #${m.id}: ${m.name}</span>
-                        <span class="magic-req">${isUnlocked ? 'Đã Mở' : m.req + ' Phước'}</span>
-                    </div>
-                    <div class="magic-desc">${m.desc}</div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // Khởi tạo
-    renderTasks();
-</script>
-
+    // Khởi chạy khi mở trang
+    updateUI();
+  </script>
 </body>
 </html>
