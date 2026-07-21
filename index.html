@@ -324,7 +324,7 @@
     <!-- Thống kê phước báo -->
     <div class="stats-card">
       <div class="stat-row">
-        <span>Tổng Phước Báo:</span>
+        <span>Phước Báo (Ống Năng Lượng):</span>
         <span class="stat-value" id="phuoc-text">0 / 5.000.000.000</span>
       </div>
       <div class="progress-bar-container">
@@ -360,8 +360,7 @@
             <li><strong>Gian dối / Khai khống:</strong> Không tự cộng phước khi chưa thực sự làm việc thiện thực tế (Làm tổn hại công đức, tự lừa dối bản thân).</li>
             <li><strong>Khêu gợi kiêu mạn:</strong> Ỷ mình có nhiều phước / phép thuật mà sinh tâm coi thường, khinh chê người khác.</li>
             <li><strong>Dùng phép làm hại chúng sinh:</strong> Tâm nghĩ ác, muốn tổn hại hay trêu ghẹo chúng sinh khác.</li>
-            <li><strong>Sát sinh & Nói lời ác ngữ:</strong> Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.</li></strong>
-         ★ Việc Nhỏ Thì Phước Đức ít   Việc Lớn VD Như Xây Chùa , Trường Học , Hiến Máu Từ Thiện Thì Công Đức Nhiều Không Nêu Tự Ý Làm Việc Nhỏ Mà Tăng Điểm Ống Năng Lượng Vượt Giới Hạn Công Việc Từ Thiện Làm Như Vậy Sẽ Giảm Đi Phước Báo Và Ống Năng Lượng Của Mỗi Chúng Sanh Tích Lũy ,Phải Làm Theo Đúng Luật Cung Trời Hóa Lạc Ai Cố Ý Xem Không Tính
+            <li><strong>Sát sinh & Nói lời ác ngữ:</strong> Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.</li></strong>★ Việc Nhỏ Thì Phước Đức ít Việc Lớn VD Như Xây Chùa , Trường Học , Hiến Máu Từ Thiện Thì Công Đức Nhiều Không Nêu Tự Ý Làm Việc Nhỏ Mà Tăng Điểm Ống Năng Lượng Vượt Giới Hạn Công Việc Từ Thiện Làm Như Vậy Sẽ Giảm Đi Phước Báo Và Ống Năng Lượng Của Mỗi Chúng Sanh Tích Lũy ,Phải Làm Theo Đúng Luật Cung Trời Hóa Lạc Ai Cố Ý Xem Không Tính
           </ul>
         </div>
         
@@ -387,6 +386,7 @@
               <tr><td>Trồng rừng bảo vệ môi trường</td><td class="phuoc-val">+100.000</td><td>Hộ Sinh</td></tr>
               <tr><td>Xây trường học & Giúp học sinh</td><td class="phuoc-val">+500.000</td><td>Khuyến Học</td></tr>
               <tr><td>Xây nhà tình thương</td><td class="phuoc-val">+1.000.000</td><td>An Cư</td></tr>
+              <tr><td>Tặng thuốc cứu bệnh nhân</td><td class="phuoc-val">+2.000.000</td><td>Y Đạo</td></tr>
               <tr><td>Xây bệnh viện & Cứu chữa người</td><td class="phuoc-val">+2.000.000</td><td>Y Đạo</td></tr>
               <tr><td>Truyền bá tri thức & Lời hay ý đẹp</td><td class="phuoc-val">+5.000.000</td><td>Khai Trí</td></tr>
               <tr><td>Xây đền chùa & Nơi tu tập</td><td class="phuoc-val">+10.000.000</td><td>Đại Công Đức</td></tr>
@@ -396,7 +396,7 @@
       </div>
     </div>
 
-    <!-- [TÍNH NĂNG MỚI] Ghi Nhận Việc Từ Thiện Thực Tế -->
+    <!-- Ghi Nhận Việc Từ Thiện Thực Tế -->
     <div class="custom-input-box">
       <label for="custom-action">📝 Ghi Nhận Việc Từ Thiện Thực Tế:</label>
       <input type="text" id="custom-action" placeholder="Nhập tên việc thiện (VD: Tặng cơm từ thiện, Quyên góp sách...)" />
@@ -435,6 +435,10 @@
       <button onclick="tichPhuoc(100000, 'Trồng rừng bảo vệ môi trường')">+100.000 Phước (Hộ Sinh)</button>
       <button onclick="tichPhuoc(500000, 'Xây trường học & Giúp học sinh nghèo')">+500.000 Phước (Khuyến Học)</button>
       <button onclick="tichPhuoc(1000000, 'Xây nhà tình thương')">+1.000.000 Phước (An Cư)</button>
+      
+      <!-- Nút Tắt Mới Thêm -->
+      <button onclick="tichPhuoc(2000000, 'Làm từ thiện làm thuốc cứu bệnh nhân')">+2.000.000 Phước (Y Đạo - Cứu Bệnh)</button>
+      
       <button onclick="tichPhuoc(2000000, 'Xây bệnh viện & Cứu chữa bệnh nhân')">+2.000.000 Phước (Y Đạo)</button>
       <button onclick="tichPhuoc(5000000, 'Truyền bá tri thức & Lời hay ý đẹp')">+5.000.000 Phước (Khai Trí)</button>
       <button onclick="tichPhuoc(10000000, 'Xây đền chùa & Nơi tu tập')">+10.000.000 Phước (Đại Công Đức)</button>
@@ -495,7 +499,7 @@
       }
     }
 
-    // [TÍNH NĂNG MỚI] Xử lý việc thiện tự nhập
+    // Xử lý việc thiện tự nhập
     function addCustomAction() {
       var actionInput = document.getElementById('custom-action');
       var amountInput = document.getElementById('custom-amount');
@@ -538,7 +542,7 @@
         bodyEl.classList.remove('show');
         iconEl.innerText = '▼';
       } else {
-        bodyEl.classList.add('show');
+        bodyEl.classList.show ? bodyEl.classList.remove('show') : bodyEl.classList.add('show');
         iconEl.innerText = '▲';
       }
     }
