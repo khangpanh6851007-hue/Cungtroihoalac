@@ -128,6 +128,33 @@
       font-size: 12px;
     }
 
+    /* Khối Giới Luật (Không được làm) */
+    .prohibition-box {
+      background-color: rgba(244, 67, 54, 0.1);
+      border: 1px dashed var(--danger);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 15px;
+    }
+
+    .prohibition-title {
+      color: #ff8888;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .prohibition-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #fca5a5;
+      font-size: 12px;
+    }
+
+    .prohibition-list li {
+      margin-bottom: 4px;
+    }
+
     .table-wrapper {
       overflow-x: auto;
       margin-top: 10px;
@@ -270,7 +297,7 @@
     <!-- Hướng Dẫn & Quy Định -->
     <div class="guide-card" style="margin-top: 20px;">
       <div class="guide-header" onclick="toggleSection('guide-body', 'guide-icon')">
-        <span class="guide-title">📖 Hướng Dẫn & Bảng Quy Định Tích Phước</span>
+        <span class="guide-title">📖 Hướng Dẫn, Quy Định & Giới Luật</span>
         <span id="guide-icon" style="color: var(--primary);">▼</span>
       </div>
       <div class="guide-content" id="guide-body">
@@ -282,7 +309,19 @@
         <div class="karma-note">
           💡 <strong>Lưu ý Nhân Quả:</strong> Mỗi người tự làm việc thiện rồi tự cộng vào thì phép và công phước đức của mỗi người mới có hiệu lực.
         </div>
+
+        <!-- Những việc KHÔNG ĐƯỢC LÀM tại Cung Trời Hoá Lạc -->
+        <div class="prohibition-box">
+          <div class="prohibition-title">⛔ Những Việc KHÔNG ĐƯỢC LÀM (Tội Báo & Tổn Phước):</div>
+          <ul class="prohibition-list">
+            <li><strong>Gian dối / Khai khống:</strong> Không tự cộng phước khi chưa thực sự làm việc thiện thực tế (Làm tổn hại công đức, tự lừa dối bản thân).</li>
+            <li><strong>Khêu gợi kiêu mạn:</strong> Ỷ mình có nhiều phước / phép thuật mà sinh tâm coi thường, khinh chê người khác.</li>
+            <li><strong>Dùng phép làm hại chúng sinh:</strong> Tâm nghĩ ác, muốn tổn hại hay trêu ghẹo chúng sinh khác.</li>
+            <li><strong>Sát sinh & Nói lời ác ngữ:</strong> Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.</li>
+          </ul>
+        </div>
         
+        <h4 style="color: var(--primary); margin-bottom: 5px; margin-top: 15px;">Bảng Bảng Tích Phước Thiện Hạnh:</h4>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -323,10 +362,10 @@
         <p style="margin-top: 5px; color: #aaa;">Dưới đây là các tính năng dự kiến sẽ nâng cấp trong các phiên bản tiếp theo:</p>
         <ul class="update-list">
           <li>✨ <strong>Hệ thống Phẩm Cấp Cõi Trời:</strong> Mở khóa các danh hiệu khi đạt mốc phước (Ví dụ: <em>Thiện Nhân, Tiên Nhơn, Hoá Lạc Thiên Vương...</em>).</li>
+          <li>⚡ <strong>Hệ Thống Trừ Phước (Ác Hạnh):</strong> Thêm nút ghi nhận lỗi lầm để tự cảnh tỉnh bản thân và trừ bớt phước báo.</li>
           <li>🔮 <strong>Tiệm Đổi Phép Thuật:</strong> Dùng Phép Thuật đổi các kỹ năng hộ thân, vật phẩm tăng tốc độ tích phước.</li>
           <li>📜 <strong>Nhật Ký Thiện Hạnh Chi Tiết:</strong> Cho phép tự nhập tên việc thiện tùy chỉnh thực tế bạn làm trong ngày.</li>
           <li>🌐 <strong>Chia Sẻ Công Đức (QR Code):</strong> Kết xuất thẻ phước báo dạng hình ảnh để chia sẻ bạn bè cùng tu tập.</li>
-          <li>🔔 <strong>Nhắc Nhở Thiện Hạnh:</strong> Thông báo nhắc nhở làm việc tốt hàng ngày.</li>
         </ul>
       </div>
     </div>
@@ -423,8 +462,8 @@
         bodyEl.classList.remove('show');
         iconEl.innerText = '▼';
       } else {
-        bodyEl.classList.add('show');
-        iconEl.innerText = '▲';
+        bodyEl.classList.show ? bodyEl.classList.remove('show') : bodyEl.classList.add('show');
+        iconEl.innerText = bodyEl.classList.contains('show') ? '▲' : '▼';
       }
     }
 
