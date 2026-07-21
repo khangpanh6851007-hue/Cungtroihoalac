@@ -11,6 +11,7 @@
       --card-bg: #1e1e2e;
       --text: #e0e0e0;
       --accent: #ff9800;
+      --danger: #f44336;
     }
 
     body {
@@ -26,7 +27,7 @@
 
     .container {
       width: 100%;
-      max-width: 500px;
+      max-width: 550px;
     }
 
     h1 {
@@ -57,7 +58,7 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .stat-value {
@@ -95,13 +96,28 @@
       padding: 12px 10px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.2s;
+      text-align: center;
     }
 
     button:active {
       transform: scale(0.96);
       background-color: var(--accent);
+    }
+
+    button.btn-reset {
+      grid-column: span 2;
+      border-color: var(--danger);
+      color: #ff8888;
+      background-color: #2a1515;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    button.btn-reset:active {
+      background-color: var(--danger);
+      color: #fff;
     }
 
     .magic-section {
@@ -124,7 +140,7 @@
       background-color: #0a0a10;
       border-radius: 8px;
       padding: 10px;
-      height: 120px;
+      height: 140px;
       overflow-y: auto;
       font-size: 12px;
       border: 1px solid #222;
@@ -138,6 +154,10 @@
     .log-item.highlight {
       color: var(--primary);
     }
+
+    .log-item.danger {
+      color: #ff6666;
+    }
   </style>
 </head>
 <body>
@@ -150,7 +170,7 @@
     <div class="stats-card">
       <div class="stat-row">
         <span>Tổng Phước Báo:</span>
-        <span class="stat-value" id="phuoc-text">0 / 5.000.000</span>
+        <span class="stat-value" id="phuoc-text">0 / 5.000.000.000</span>
       </div>
       <div class="progress-bar-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -167,10 +187,26 @@
     <!-- Hành động gieo quẻ/tích phước -->
     <h3 style="margin-top: 20px; font-size: 16px;">Tạo Thiện Hạnh (Tích Phước)</h3>
     <div class="actions">
+      <!-- 4 Hành động cũ -->
       <button onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
       <button onclick="tichPhuoc(50, 'Giúp đỡ người khó khăn')">+50 Phước (Thân)</button>
       <button onclick="tichPhuoc(100, 'Ấn tạc kinh sách / Cung kính')">+100 Phước (Ý)</button>
       <button onclick="tichPhuoc(500, 'Phóng sinh & Cứu mạng')">+500 Phước (Đại Thiện)</button>
+
+      <!-- 10 Hành động Thiện Hạnh mới thêm vào -->
+      <button onclick="tichPhuoc(1000, 'Tùy hỷ công đức')">+1.000 Phước (Tùy Hỷ)</button>
+      <button onclick="tichPhuoc(5000, 'Cúng dâng Tam Bảo')">+5.000 Phước (Cúng Cúng)</button>
+      <button onclick="tichPhuoc(10000, 'Hiếu kính bố mẹ')">+10.000 Phước (Hiếu Đạo)</button>
+      <button onclick="tichPhuoc(50000, 'Xây cầu làm đường')">+50.000 Phước (Lợi Chúng)</button>
+      <button onclick="tichPhuoc(100000, 'Trồng rừng bảo vệ môi trường')">+100.000 Phước (Hộ Sinh)</button>
+      <button onclick="tichPhuoc(500000, 'Xây trường học & Giúp học sinh nghèo')">+500.000 Phước (Khuyến Học)</button>
+      <button onclick="tichPhuoc(1000000, 'Xây nhà tình thương')">+1.000.000 Phước (An Cư)</button>
+      <button onclick="tichPhuoc(2000000, 'Xây bệnh viện & Cứu chữa bệnh nhân')">+2.000.000 Phước (Y Đạo)</button>
+      <button onclick="tichPhuoc(5000000, 'Truyền bá tri thức & Lời hay ý đẹp')">+5.000.000 Phước (Khai Trí)</button>
+      <button onclick="tichPhuoc(10000000, 'Xây đền chùa & Nơi tu tập')">+10.000.000 Phước (Đại Công Đức)</button>
+
+      <!-- Nút Reset Dữ Liệu -->
+      <button class="btn-reset" onclick="resetData()">🔄 Xóa Dữ Liệu & Bắt Đầu Lại (Reset)</button>
     </div>
 
     <!-- Nhật ký hành sự -->
@@ -180,7 +216,7 @@
   </div>
 
   <script>
-    const MAX_PHUOC = 5000000;
+    const MAX_PHUOC = 5000000000; // 5 Tỷ Phước
     let currentPhuoc = 0;
 
     // Khôi phục dữ liệu đã lưu nếu có
@@ -189,7 +225,7 @@
     }
 
     function updateUI() {
-      // Giới hạn max 5.000.000
+      // Giới hạn max 5.000.000.000
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
 
       // Tính số phép (100 phước = 1 phép)
@@ -201,7 +237,10 @@
       // Cập nhật giao diện
       document.getElementById('phuoc-text').innerText = `${currentPhuoc.toLocaleString('vi-VN')} / ${MAX_PHUOC.toLocaleString('vi-VN')}`;
       document.getElementById('phep-text').innerText = `${phepCount.toLocaleString('vi-VN')} Phép`;
-      document.getElementById('progress-bar').style.width = `${percent}%`;
+      
+      // Đảm bảo thanh progress hiển thị tối thiểu 0.5% nếu có phước để dễ nhìn
+      const displayPercent = (percent > 0 && percent < 0.5) ? 0.5 : percent;
+      document.getElementById('progress-bar').style.width = `${displayPercent}%`;
 
       // Lưu vào bộ nhớ máy
       localStorage.setItem('phuoc_bao', currentPhuoc);
@@ -209,29 +248,42 @@
 
     function tichPhuoc(amount, actionName) {
       if (currentPhuoc >= MAX_PHUOC) {
-        addLog("Bạn đã đạt tối đa 5.000.000 Phước Báo! Phước đức vô lượng.");
+        addLog("Bạn đã đạt tối đa 5.000.000.000 Phước Báo! Phước đức vô lượng.");
         return;
       }
 
       const oldPhep = Math.floor(currentPhuoc / 100);
       currentPhuoc += amount;
+      if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
+      
       const newPhep = Math.floor(currentPhuoc / 100);
 
       updateUI();
 
-      let message = `Bạn đã làm: "${actionName}" -> +${amount} Phước Báo.`;
+      let message = `Bạn đã làm: "${actionName}" -> +${amount.toLocaleString('vi-VN')} Phước Báo.`;
       addLog(message);
 
       // Nếu tích đủ thêm phép mới
       if (newPhep > oldPhep) {
-        addLog(`✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm ${newPhep - oldPhep} Phép Thuật!`, true);
+        const addedPhep = newPhep - oldPhep;
+        addLog(`✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm ${addedPhep.toLocaleString('vi-VN')} Phép Thuật!`, 'highlight');
       }
     }
 
-    function addLog(text, isHighlight = false) {
+    function resetData() {
+      const confirmReset = confirm("Bạn có chắc chắn muốn đặt lại (Reset) toàn bộ Phước Báo và Phép Thuật về 0 không?");
+      if (confirmReset) {
+        currentPhuoc = 0;
+        localStorage.removeItem('phuoc_bao');
+        updateUI();
+        addLog("⚠️ Đã khởi tạo lại toàn bộ Phước Báo và Phép Thuật về 0.", 'danger');
+      }
+    }
+
+    function addLog(text, type = '') {
       const logBox = document.getElementById('log-box');
       const item = document.createElement('div');
-      item.className = isHighlight ? 'log-item highlight' : 'log-item';
+      item.className = 'log-item' + (type ? ' ' + type : '');
       
       const time = new Date().toLocaleTimeString('vi-VN');
       item.innerText = `[${time}] ${text}`;
