@@ -12,6 +12,8 @@
       --text: #e0e0e0;
       --accent: #ff9800;
       --danger: #f44336;
+      --info: #2196f3;
+      --success: #4caf50;
     }
 
     body {
@@ -80,6 +82,77 @@
       background: linear-gradient(90deg, #ff9800, #ffd700);
       width: 0%;
       transition: width 0.3s ease;
+    }
+
+    /* Card Section cho Hướng Dẫn & Gợi Ý Update */
+    .guide-card {
+      background-color: var(--card-bg);
+      border: 1px solid #334;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .guide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .guide-title {
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    .guide-content {
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .guide-content.show {
+      display: block;
+    }
+
+    .karma-note {
+      background-color: rgba(255, 215, 0, 0.1);
+      border-left: 3px solid var(--primary);
+      padding: 10px;
+      margin-top: 10px;
+      font-style: italic;
+      color: #ffe082;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #161622;
+      color: var(--primary);
+    }
+
+    td.phuoc-val {
+      color: var(--accent);
+      font-weight: bold;
     }
 
     .actions {
@@ -158,6 +231,16 @@
     .log-item.danger {
       color: #ff6666;
     }
+
+    .update-list {
+      padding-left: 18px;
+      margin: 8px 0;
+      color: #ddd;
+    }
+
+    .update-list li {
+      margin-bottom: 6px;
+    }
   </style>
 </head>
 <body>
@@ -184,16 +267,77 @@
       <small style="color: #888;">(Cứ 100 Phước Báo = 1 Phép Thuật)</small>
     </div>
 
-    <!-- Hành động gieo quẻ/tích phước -->
-    <h3 style="margin-top: 20px; font-size: 16px;">Tạo Thiện Hạnh (Tích Phước)</h3>
+    <!-- Hướng Dẫn & Quy Định -->
+    <div class="guide-card" style="margin-top: 20px;">
+      <div class="guide-header" onclick="toggleSection('guide-body', 'guide-icon')">
+        <span class="guide-title">📖 Hướng Dẫn & Bảng Quy Định Tích Phước</span>
+        <span id="guide-icon" style="color: var(--primary);">▼</span>
+      </div>
+      <div class="guide-content" id="guide-body">
+        <p style="margin-top: 5px; color: #bbb;">
+          <strong>Tạo Thiện Hạnh (Tích Phước):</strong> Hãy thực hiện các việc từ thiện, làm lành tránh dữ để tăng trưởng phước báo của bản thân. Mỗi 100 phước báo sẽ tự động đổi được 1 Phép Thuật trên Cung Trời Hoá Lạc.
+        </p>
+
+        <!-- Lời nhắc nhở Chân Lý -->
+        <div class="karma-note">
+          💡 <strong>Lưu ý Nhân Quả:</strong> Mỗi người tự làm việc thiện rồi tự cộng vào thì phép và công phước đức của mỗi người mới có hiệu lực.
+        </div>
+        
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Hành Động Thiện Hạnh</th>
+                <th>Phước Nhận Được</th>
+                <th>Loại Công Đức</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Nói lời hòa nhã</td><td class="phuoc-val">+10</td><td>Khẩu Thiện</td></tr>
+              <tr><td>Giúp đỡ người khó khăn</td><td class="phuoc-val">+50</td><td>Thân Thiện</td></tr>
+              <tr><td>Ấn tạc kinh sách / Cung kính</td><td class="phuoc-val">+100</td><td>Ý Thiện</td></tr>
+              <tr><td>Phóng sinh & Cứu mạng</td><td class="phuoc-val">+500</td><td>Đại Thiện</td></tr>
+              <tr><td>Tùy hỷ công đức</td><td class="phuoc-val">+1.000</td><td>Tùy Hỷ</td></tr>
+              <tr><td>Cúng dâng Tam Bảo</td><td class="phuoc-val">+5.000</td><td>Cúng Cúng</td></tr>
+              <tr><td>Hiếu kính bố mẹ</td><td class="phuoc-val">+10.000</td><td>Hiếu Đạo</td></tr>
+              <tr><td>Xây cầu làm đường</td><td class="phuoc-val">+50.000</td><td>Lợi Chúng</td></tr>
+              <tr><td>Trồng rừng bảo vệ môi trường</td><td class="phuoc-val">+100.000</td><td>Hộ Sinh</td></tr>
+              <tr><td>Xây trường học & Giúp học sinh</td><td class="phuoc-val">+500.000</td><td>Khuyến Học</td></tr>
+              <tr><td>Xây nhà tình thương</td><td class="phuoc-val">+1.000.000</td><td>An Cư</td></tr>
+              <tr><td>Xây bệnh viện & Cứu chữa người</td><td class="phuoc-val">+2.000.000</td><td>Y Đạo</td></tr>
+              <tr><td>Truyền bá tri thức & Lời hay ý đẹp</td><td class="phuoc-val">+5.000.000</td><td>Khai Trí</td></tr>
+              <tr><td>Xây đền chùa & Nơi tu tập</td><td class="phuoc-val">+10.000.000</td><td>Đại Công Đức</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gợi Ý Bản Cập Nhật Sau -->
+    <div class="guide-card">
+      <div class="guide-header" onclick="toggleSection('update-body', 'update-icon')">
+        <span class="guide-title" style="color: var(--info);">🚀 Gợi Ý Bản Cập Nhật Lần Sau</span>
+        <span id="update-icon" style="color: var(--info);">▼</span>
+      </div>
+      <div class="guide-content" id="update-body">
+        <p style="margin-top: 5px; color: #aaa;">Dưới đây là các tính năng dự kiến sẽ nâng cấp trong các phiên bản tiếp theo:</p>
+        <ul class="update-list">
+          <li>✨ <strong>Hệ thống Phẩm Cấp Cõi Trời:</strong> Mở khóa các danh hiệu khi đạt mốc phước (Ví dụ: <em>Thiện Nhân, Tiên Nhơn, Hoá Lạc Thiên Vương...</em>).</li>
+          <li>🔮 <strong>Tiệm Đổi Phép Thuật:</strong> Dùng Phép Thuật đổi các kỹ năng hộ thân, vật phẩm tăng tốc độ tích phước.</li>
+          <li>📜 <strong>Nhật Ký Thiện Hạnh Chi Tiết:</strong> Cho phép tự nhập tên việc thiện tùy chỉnh thực tế bạn làm trong ngày.</li>
+          <li>🌐 <strong>Chia Sẻ Công Đức (QR Code):</strong> Kết xuất thẻ phước báo dạng hình ảnh để chia sẻ bạn bè cùng tu tập.</li>
+          <li>🔔 <strong>Nhắc Nhở Thiện Hạnh:</strong> Thông báo nhắc nhở làm việc tốt hàng ngày.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hành động tích phước -->
+    <h3 style="margin-top: 10px; font-size: 16px;">Tạo Thiện Hạnh (Tích Phước)</h3>
     <div class="actions">
-      <!-- 4 Hành động cũ -->
       <button onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
       <button onclick="tichPhuoc(50, 'Giúp đỡ người khó khăn')">+50 Phước (Thân)</button>
       <button onclick="tichPhuoc(100, 'Ấn tạc kinh sách / Cung kính')">+100 Phước (Ý)</button>
       <button onclick="tichPhuoc(500, 'Phóng sinh & Cứu mạng')">+500 Phước (Đại Thiện)</button>
-
-      <!-- 10 Hành động Thiện Hạnh mới thêm vào -->
       <button onclick="tichPhuoc(1000, 'Tùy hỷ công đức')">+1.000 Phước (Tùy Hỷ)</button>
       <button onclick="tichPhuoc(5000, 'Cúng dâng Tam Bảo')">+5.000 Phước (Cúng Cúng)</button>
       <button onclick="tichPhuoc(10000, 'Hiếu kính bố mẹ')">+10.000 Phước (Hiếu Đạo)</button>
@@ -205,7 +349,7 @@
       <button onclick="tichPhuoc(5000000, 'Truyền bá tri thức & Lời hay ý đẹp')">+5.000.000 Phước (Khai Trí)</button>
       <button onclick="tichPhuoc(10000000, 'Xây đền chùa & Nơi tu tập')">+10.000.000 Phước (Đại Công Đức)</button>
 
-      <!-- Nút Reset Dữ Liệu -->
+      <!-- Nút Reset -->
       <button class="btn-reset" onclick="resetData()">🔄 Xóa Dữ Liệu & Bắt Đầu Lại (Reset)</button>
     </div>
 
@@ -216,33 +360,25 @@
   </div>
 
   <script>
-    const MAX_PHUOC = 5000000000; // 5 Tỷ Phước
+    const MAX_PHUOC = 5000000000;
     let currentPhuoc = 0;
 
-    // Khôi phục dữ liệu đã lưu nếu có
     if (localStorage.getItem('phuoc_bao')) {
       currentPhuoc = parseInt(localStorage.getItem('phuoc_bao')) || 0;
     }
 
     function updateUI() {
-      // Giới hạn max 5.000.000.000
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
 
-      // Tính số phép (100 phước = 1 phép)
       const phepCount = Math.floor(currentPhuoc / 100);
-
-      // Tính phần trăm thanh tiến trình
       const percent = (currentPhuoc / MAX_PHUOC) * 100;
 
-      // Cập nhật giao diện
       document.getElementById('phuoc-text').innerText = `${currentPhuoc.toLocaleString('vi-VN')} / ${MAX_PHUOC.toLocaleString('vi-VN')}`;
       document.getElementById('phep-text').innerText = `${phepCount.toLocaleString('vi-VN')} Phép`;
       
-      // Đảm bảo thanh progress hiển thị tối thiểu 0.5% nếu có phước để dễ nhìn
       const displayPercent = (percent > 0 && percent < 0.5) ? 0.5 : percent;
       document.getElementById('progress-bar').style.width = `${displayPercent}%`;
 
-      // Lưu vào bộ nhớ máy
       localStorage.setItem('phuoc_bao', currentPhuoc);
     }
 
@@ -263,7 +399,6 @@
       let message = `Bạn đã làm: "${actionName}" -> +${amount.toLocaleString('vi-VN')} Phước Báo.`;
       addLog(message);
 
-      // Nếu tích đủ thêm phép mới
       if (newPhep > oldPhep) {
         const addedPhep = newPhep - oldPhep;
         addLog(`✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm ${addedPhep.toLocaleString('vi-VN')} Phép Thuật!`, 'highlight');
@@ -280,6 +415,19 @@
       }
     }
 
+    function toggleSection(bodyId, iconId) {
+      const bodyEl = document.getElementById(bodyId);
+      const iconEl = document.getElementById(iconId);
+      
+      if (bodyEl.classList.contains('show')) {
+        bodyEl.classList.remove('show');
+        iconEl.innerText = '▼';
+      } else {
+        bodyEl.classList.add('show');
+        iconEl.innerText = '▲';
+      }
+    }
+
     function addLog(text, type = '') {
       const logBox = document.getElementById('log-box');
       const item = document.createElement('div');
@@ -291,7 +439,6 @@
       logBox.insertBefore(item, logBox.firstChild);
     }
 
-    // Khởi chạy khi mở trang
     updateUI();
   </script>
 </body>
