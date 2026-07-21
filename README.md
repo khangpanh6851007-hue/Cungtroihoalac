@@ -1,39 +1,24 @@
-# 🌟 Luật Nhân Quả - Tích Phước Hoá Lạc
+# Luật Nhân Quả - Tích Phước Hoá Lạc 🌟
 
-Một ứng dụng web đơn giản, trực quan giúp theo dõi, ghi chép và tự nhắc nhở bản thân thực hiện các hành động **thiện hạnh**, tích luỹ phước báo và quy đổi thành phép thuật trên **Cung Trời Hoá Lạc**.
-
----
-
-## 📌 Tính Năng Chính
-
-* **Tích Luỹ Phước Báo & Phép Thuật:** Mỗi việc thiện bạn tự ghi nhận sẽ cộng điểm phước. Cứ **100 Phước Báo = 1 Phép Thuật**.
-* **Bảng Quy Định Tích Phước:** Danh sách chi tiết các công đức từ *Nói lời hòa nhã (+10)* tới *Xây đền chùa & Nơi tu tập (+10.000.000)*.
-* **⛔ Giới Luật Cung Trời Hóa Lạc (Mới):** Cảnh báo những điều không được làm để tránh tổn hại phước báo và công đức.
-* **Lưu Trữ Tự Động (LocalStorage):** Dữ liệu phước báo được lưu trực tiếp trên thiết bị của bạn, không lo bị mất khi tải lại trang.
-* **Nhật Ký Hành Sự:** Theo dõi lịch sử làm việc tốt theo thời gian thực.
-* **🚀 Gợi Ý Bản Cập Nhật Lần Sau:** Xem trước lộ trình nâng cấp tính năng tương lai.
-* **Giao Diện Tối Tối Tối Tối Ưu (Dark Mode):** Dễ nhìn, đẹp mắt trên cả điện thoại di động (Acode, Chrome...) và máy tính.
+Ứng dụng web tĩnh nhỏ gọn được thiết kế để hỗ trợ người dùng ghi nhận, theo dõi quá trình tích luỹ phước đức, làm lành lánh dữ và quy đổi năng lượng tu tập theo luật nhân quả, hướng đến Cung Trời Hoá Lạc. Ứng dụng tương thích hoàn hảo trên các trình duyệt di động cũng như môi trường lập trình như Pydroid 3 trên Android.
 
 ---
 
-## 📖 Triết Lý Ứng Dụng
+## ✨ Tính Năng Nổi Bật
 
-> 💡 **Lưu ý Nhân Quả:** *Mỗi người tự làm việc thiện rồi tự cộng vào thì phép và công phước đức của mỗi người mới có hiệu lực.*
-
----
-
-## ⛔ Những Việc KHÔNG ĐƯỢC LÀM (Giới Luật Cung Trời)
-
-Để giữ trọn công đức và không bị tổn hại phước báo, người tu tập cần tránh:
-1. **Gian dối / Khai khống:** Không tự cộng phước khi chưa thực sự làm việc thiện thực tế (Làm tổn hại công đức, tự lừa dối bản thân).
-2. **Khêu gợi kiêu mạn:** Ỷ mình có nhiều phước / phép thuật mà sinh tâm coi thường, khinh chê người khác.
-3. **Dùng phép làm hại chúng sinh:** Tâm nghĩ ác, muốn tổn hại hay trêu ghẹo chúng sinh khác.
-4. **Sát sinh & Nói lời ác ngữ:** Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.
+* **Thống Kê Phước Báo Trực Quan:** Theo dõi tổng điểm phước báo hiện tại so với mốc tối đa ($5.000.000.000$ Phước) kèm thanh tiến độ sinh động.
+* **Quy Đổi Phép Thuật Tự Động:** Hệ thống tự động tính toán năng lượng Cung Trời Hoá Lạc theo tỷ lệ: **100 Phước Báo = 1 Phép Thuật**.
+* **Hành Động Thiện Hạnh (Nút Tắt):** Cung cấp sẵn bảng mẫu các việc thiện từ nhỏ đến lớn (từ lời nói hòa nhã, phóng sinh, cho đến xây dựng công trình cộng đồng, đền chùa).
+* **Ghi Nhận Việc Thiện Tùy Chỉnh:** Cho phép người dùng tự nhập tên hành động thực tế và số phước báo tương ứng một cách linh hoạt.
+* **Lưu Trữ Cục Bộ (LocalStorage):** Tự động lưu lại điểm số của bạn trên trình duyệt, không lo bị mất dữ liệu khi tải lại trang.
+* **Nhật Ký Hành Sự Theo Thời Gian Thực:** Hiển thị chi tiết lịch sử các việc thiện đã làm kèm mốc thời gian cụ thể.
+* **Hướng Dẫn & Giới Luật Nhân Quả:** Tích hợp sẵn bảng tra cứu phước đức và các quy định nghiêm ngặt về việc tránh khai khống, gian dối để bảo vệ công đức thực tế.
 
 ---
 
-## 📂 Cấu Trúc Dự Án
+## 🛠️ Cấu Trúc Dự Án
 
+Dự án chỉ gồm một tệp duy nhất để tối ưu hoá việc chạy ngoại tuyến trên điện thoại:
 ```text
-├── index.html       # File giao diện và mã nguồn ứng dụng (HTML, CSS, JS)
-└── README.md        # Tài liệu hướng dẫn sử dụng
+├── index.html    # Giao diện, mã nguồn CSS và Logic JavaScript tích hợp
+└── README.md     # Tài liệu hướng dẫn sử dụng dự án
