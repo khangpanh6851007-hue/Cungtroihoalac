@@ -84,7 +84,6 @@
       transition: width 0.3s ease;
     }
 
-    /* Card Section cho Hướng Dẫn & Gợi Ý Update */
     .guide-card {
       background-color: var(--card-bg);
       border: 1px solid #334;
@@ -128,7 +127,6 @@
       font-size: 12px;
     }
 
-    /* Khối Giới Luật (Không được làm) */
     .prohibition-box {
       background-color: rgba(244, 67, 54, 0.1);
       border: 1px dashed var(--danger);
@@ -180,6 +178,53 @@
     td.phuoc-val {
       color: var(--accent);
       font-weight: bold;
+    }
+
+    /* Khối Ghi Nhận Việc Thiện Tùy Chỉnh */
+    .custom-input-box {
+      background-color: var(--card-bg);
+      border: 1px solid #334;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .custom-input-box label {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .custom-input-box input {
+      background-color: #121218;
+      border: 1px solid #444;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .custom-input-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .custom-input-box button {
+      background-color: var(--success);
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 11px;
+    }
+
+    .custom-input-box button:active {
+      background-color: #388e3c;
     }
 
     .actions {
@@ -305,23 +350,22 @@
           <strong>Tạo Thiện Hạnh (Tích Phước):</strong> Hãy thực hiện các việc từ thiện, làm lành tránh dữ để tăng trưởng phước báo của bản thân. Mỗi 100 phước báo sẽ tự động đổi được 1 Phép Thuật trên Cung Trời Hoá Lạc.
         </p>
 
-        <!-- Lời nhắc nhở Chân Lý -->
         <div class="karma-note">
           💡 <strong>Lưu ý Nhân Quả:</strong> Mỗi người tự làm việc thiện rồi tự cộng vào thì phép và công phước đức của mỗi người mới có hiệu lực.
         </div>
 
-        <!-- Những việc KHÔNG ĐƯỢC LÀM tại Cung Trời Hoá Lạc -->
         <div class="prohibition-box">
           <div class="prohibition-title">⛔ Những Việc KHÔNG ĐƯỢC LÀM (Tội Báo & Tổn Phước):</div>
           <ul class="prohibition-list">
             <li><strong>Gian dối / Khai khống:</strong> Không tự cộng phước khi chưa thực sự làm việc thiện thực tế (Làm tổn hại công đức, tự lừa dối bản thân).</li>
             <li><strong>Khêu gợi kiêu mạn:</strong> Ỷ mình có nhiều phước / phép thuật mà sinh tâm coi thường, khinh chê người khác.</li>
             <li><strong>Dùng phép làm hại chúng sinh:</strong> Tâm nghĩ ác, muốn tổn hại hay trêu ghẹo chúng sinh khác.</li>
-            <li><strong>Sát sinh & Nói lời ác ngữ:</strong> Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.</li>
+            <li><strong>Sát sinh & Nói lời ác ngữ:</strong> Làm việc xấu sẽ làm suy giảm nghiêm trọng phước báo ở Cung Trời.</li></strong>
+         ★ Việc Nhỏ Thì Phước Đức ít   Việc Lớn VD Như Xây Chùa , Trường Học , Hiến Máu Từ Thiện Thì Công Đức Nhiều Không Nêu Tự Ý Làm Việc Nhỏ Mà Tăng Điểm Ống Năng Lượng Vượt Giới Hạn Công Việc Từ Thiện Làm Như Vậy Sẽ Giảm Đi Phước Báo Và Ống Năng Lượng Của Mỗi Chúng Sanh Tích Lũy ,Phải Làm Theo Đúng Luật Cung Trời Hóa Lạc Ai Cố Ý Xem Không Tính
           </ul>
         </div>
         
-        <h4 style="color: var(--primary); margin-bottom: 5px; margin-top: 15px;">Bảng Bảng Tích Phước Thiện Hạnh:</h4>
+        <h4 style="color: var(--primary); margin-bottom: 5px; margin-top: 15px;">Bảng Tích Phước Thiện Hạnh:</h4>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -352,6 +396,14 @@
       </div>
     </div>
 
+    <!-- [TÍNH NĂNG MỚI] Ghi Nhận Việc Từ Thiện Thực Tế -->
+    <div class="custom-input-box">
+      <label for="custom-action">📝 Ghi Nhận Việc Từ Thiện Thực Tế:</label>
+      <input type="text" id="custom-action" placeholder="Nhập tên việc thiện (VD: Tặng cơm từ thiện, Quyên góp sách...)" />
+      <input type="number" id="custom-amount" placeholder="Nhập số phước báo dự kiến (VD: 250)" />
+      <button onclick="addCustomAction()">✨ Tích Phước Tùy Chỉnh</button>
+    </div>
+
     <!-- Gợi Ý Bản Cập Nhật Sau -->
     <div class="guide-card">
       <div class="guide-header" onclick="toggleSection('update-body', 'update-icon')">
@@ -364,14 +416,13 @@
           <li>✨ <strong>Hệ thống Phẩm Cấp Cõi Trời:</strong> Mở khóa các danh hiệu khi đạt mốc phước (Ví dụ: <em>Thiện Nhân, Tiên Nhơn, Hoá Lạc Thiên Vương...</em>).</li>
           <li>⚡ <strong>Hệ Thống Trừ Phước (Ác Hạnh):</strong> Thêm nút ghi nhận lỗi lầm để tự cảnh tỉnh bản thân và trừ bớt phước báo.</li>
           <li>🔮 <strong>Tiệm Đổi Phép Thuật:</strong> Dùng Phép Thuật đổi các kỹ năng hộ thân, vật phẩm tăng tốc độ tích phước.</li>
-          <li>📜 <strong>Nhật Ký Thiện Hạnh Chi Tiết:</strong> Cho phép tự nhập tên việc thiện tùy chỉnh thực tế bạn làm trong ngày.</li>
           <li>🌐 <strong>Chia Sẻ Công Đức (QR Code):</strong> Kết xuất thẻ phước báo dạng hình ảnh để chia sẻ bạn bè cùng tu tập.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Hành động tích phước -->
-    <h3 style="margin-top: 10px; font-size: 16px;">Tạo Thiện Hạnh (Tích Phước)</h3>
+    <!-- Hành động tích phước mẫu -->
+    <h3 style="margin-top: 10px; font-size: 16px;">Tạo Thiện Hạnh (Nút Tắt)</h3>
     <div class="actions">
       <button onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
       <button onclick="tichPhuoc(50, 'Giúp đỡ người khó khăn')">+50 Phước (Thân)</button>
@@ -399,8 +450,8 @@
   </div>
 
   <script>
-    const MAX_PHUOC = 5000000000;
-    let currentPhuoc = 0;
+    var MAX_PHUOC = 5000000000;
+    var currentPhuoc = 0;
 
     if (localStorage.getItem('phuoc_bao')) {
       currentPhuoc = parseInt(localStorage.getItem('phuoc_bao')) || 0;
@@ -409,14 +460,14 @@
     function updateUI() {
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
 
-      const phepCount = Math.floor(currentPhuoc / 100);
-      const percent = (currentPhuoc / MAX_PHUOC) * 100;
+      var phepCount = Math.floor(currentPhuoc / 100);
+      var percent = (currentPhuoc / MAX_PHUOC) * 100;
 
-      document.getElementById('phuoc-text').innerText = `${currentPhuoc.toLocaleString('vi-VN')} / ${MAX_PHUOC.toLocaleString('vi-VN')}`;
-      document.getElementById('phep-text').innerText = `${phepCount.toLocaleString('vi-VN')} Phép`;
+      document.getElementById('phuoc-text').innerText = currentPhuoc.toLocaleString('vi-VN') + " / " + MAX_PHUOC.toLocaleString('vi-VN');
+      document.getElementById('phep-text').innerText = phepCount.toLocaleString('vi-VN') + " Phép";
       
-      const displayPercent = (percent > 0 && percent < 0.5) ? 0.5 : percent;
-      document.getElementById('progress-bar').style.width = `${displayPercent}%`;
+      var displayPercent = (percent > 0 && percent < 0.5) ? 0.5 : percent;
+      document.getElementById('progress-bar').style.width = displayPercent + "%";
 
       localStorage.setItem('phuoc_bao', currentPhuoc);
     }
@@ -427,25 +478,50 @@
         return;
       }
 
-      const oldPhep = Math.floor(currentPhuoc / 100);
+      var oldPhep = Math.floor(currentPhuoc / 100);
       currentPhuoc += amount;
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
       
-      const newPhep = Math.floor(currentPhuoc / 100);
+      var newPhep = Math.floor(currentPhuoc / 100);
 
       updateUI();
 
-      let message = `Bạn đã làm: "${actionName}" -> +${amount.toLocaleString('vi-VN')} Phước Báo.`;
+      var message = "Bạn đã làm: \"" + actionName + "\" -> +" + amount.toLocaleString('vi-VN') + " Phước Báo.";
       addLog(message);
 
       if (newPhep > oldPhep) {
-        const addedPhep = newPhep - oldPhep;
-        addLog(`✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm ${addedPhep.toLocaleString('vi-VN')} Phép Thuật!`, 'highlight');
+        var addedPhep = newPhep - oldPhep;
+        addLog("✨ Cung Trời Hoá Lạc: Bạn vừa nhận thêm " + addedPhep.toLocaleString('vi-VN') + " Phép Thuật!", 'highlight');
       }
     }
 
+    // [TÍNH NĂNG MỚI] Xử lý việc thiện tự nhập
+    function addCustomAction() {
+      var actionInput = document.getElementById('custom-action');
+      var amountInput = document.getElementById('custom-amount');
+
+      var actionName = actionInput.value.trim();
+      var amount = parseInt(amountInput.value);
+
+      if (!actionName) {
+        alert("Vui lòng nhập tên việc thiện thực tế bạn đã làm!");
+        return;
+      }
+
+      if (isNaN(amount) || amount <= 0) {
+        alert("Vui lòng nhập số phước báo hợp lệ (lớn hơn 0)!");
+        return;
+      }
+
+      tichPhuoc(amount, actionName + ' (Thực tế)');
+
+      // Xóa trắng input sau khi thêm
+      actionInput.value = '';
+      amountInput.value = '';
+    }
+
     function resetData() {
-      const confirmReset = confirm("Bạn có chắc chắn muốn đặt lại (Reset) toàn bộ Phước Báo và Phép Thuật về 0 không?");
+      var confirmReset = confirm("Bạn có chắc chắn muốn đặt lại (Reset) toàn bộ Phước Báo và Phép Thuật về 0 không?");
       if (confirmReset) {
         currentPhuoc = 0;
         localStorage.removeItem('phuoc_bao');
@@ -455,25 +531,26 @@
     }
 
     function toggleSection(bodyId, iconId) {
-      const bodyEl = document.getElementById(bodyId);
-      const iconEl = document.getElementById(iconId);
+      var bodyEl = document.getElementById(bodyId);
+      var iconEl = document.getElementById(iconId);
       
       if (bodyEl.classList.contains('show')) {
         bodyEl.classList.remove('show');
         iconEl.innerText = '▼';
       } else {
-        bodyEl.classList.show ? bodyEl.classList.remove('show') : bodyEl.classList.add('show');
-        iconEl.innerText = bodyEl.classList.contains('show') ? '▲' : '▼';
+        bodyEl.classList.add('show');
+        iconEl.innerText = '▲';
       }
     }
 
-    function addLog(text, type = '') {
-      const logBox = document.getElementById('log-box');
-      const item = document.createElement('div');
+    function addLog(text, type) {
+      type = type || '';
+      var logBox = document.getElementById('log-box');
+      var item = document.createElement('div');
       item.className = 'log-item' + (type ? ' ' + type : '');
       
-      const time = new Date().toLocaleTimeString('vi-VN');
-      item.innerText = `[${time}] ${text}`;
+      var time = new Date().toLocaleTimeString('vi-VN');
+      item.innerText = "[" + time + "] " + text;
 
       logBox.insertBefore(item, logBox.firstChild);
     }
