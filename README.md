@@ -1,24 +1,42 @@
-# Luật Nhân Quả - Tích Phước Hoá Lạc 🌟
+# 🪷 Luật Nhân Quả - Tích Phước Hoá Lạc
 
-Ứng dụng web tĩnh nhỏ gọn được thiết kế để hỗ trợ người dùng ghi nhận, theo dõi quá trình tích luỹ phước đức, làm lành lánh dữ và quy đổi năng lượng tu tập theo luật nhân quả, hướng đến Cung Trời Hoá Lạc. Ứng dụng tương thích hoàn hảo trên các trình duyệt di động cũng như môi trường lập trình như Pydroid 3 trên Android.
+> **Ứng dụng tu tập & theo dõi công đức cá nhân trên giao diện Web.**  
+> *Mỗi việc thiện nhỏ bạn làm hôm nay là một hạt giống lành cho tương lai.*
 
 ---
 
-## ✨ Tính Năng Nổi Bật
+## 📖 Giới Thiệu
 
-* **Thống Kê Phước Báo Trực Quan:** Theo dõi tổng điểm phước báo hiện tại so với mốc tối đa ($5.000.000.000$ Phước) kèm thanh tiến độ sinh động.
-* **Quy Đổi Phép Thuật Tự Động:** Hệ thống tự động tính toán năng lượng Cung Trời Hoá Lạc theo tỷ lệ: **100 Phước Báo = 1 Phép Thuật**.
-* **Hành Động Thiện Hạnh (Nút Tắt):** Cung cấp sẵn bảng mẫu các việc thiện từ nhỏ đến lớn (từ lời nói hòa nhã, phóng sinh, cho đến xây dựng công trình cộng đồng, đền chùa).
-* **Ghi Nhận Việc Thiện Tùy Chỉnh:** Cho phép người dùng tự nhập tên hành động thực tế và số phước báo tương ứng một cách linh hoạt.
-* **Lưu Trữ Cục Bộ (LocalStorage):** Tự động lưu lại điểm số của bạn trên trình duyệt, không lo bị mất dữ liệu khi tải lại trang.
-* **Nhật Ký Hành Sự Theo Thời Gian Thực:** Hiển thị chi tiết lịch sử các việc thiện đã làm kèm mốc thời gian cụ thể.
-* **Hướng Dẫn & Giới Luật Nhân Quả:** Tích hợp sẵn bảng tra cứu phước đức và các quy định nghiêm ngặt về việc tránh khai khống, gian dối để bảo vệ công đức thực tế.
+**Luật Nhân Quả - Tích Phước Hoá Lạc** là một ứng dụng Web nhẹ nhàng, trực quan giúp người dùng tự ghi nhận, quản lý và theo dõi số điểm phước báo cũng như phép thuật tích lũy dựa trên những việc thiện thực tế trong cuộc sống hàng ngày.
+
+Ứng dụng hướng tới việc nhắc nhở bản thân sống hướng thiện, siêng năng làm việc có ích, giữ gìn thân - khẩu - ý và thực hành các thiện hạnh theo tinh thần nhân quả.
+
+---
+
+## ✨ Tính Năng Chính
+
+* **📊 Thanh Tiến Trình Phước Báo:**
+  * Giới hạn tối đa **5.000.000.000 Phước Báo**.
+  * Tự động quy đổi: **100 Phước Báo = 1 Phép Thuật** trên cõi trời Hoá Lạc.
+* **⚡ Nút Tắt Tạo Thiện Hạnh:**
+  * Tích phước nhanh theo từng nhóm hành động (Khẩu Thiện, Thân Thiện, Y Đạo, Khuyến Học, Đại Công Đức...).
+  * **Mới:** Bổ sung nút tắt *"Làm từ thiện làm thuốc cứu bệnh nhân"* (+2.000.000 Phước Báo).
+* **📝 Tự Nhập Việc Thiện Thực Tế:**
+  * Cho phép người dùng tự ghi lại tên công việc lành đã làm và số phước tương ứng.
+* **📖 Hướng Dẫn, Quy Định & Bảng Tích Phước:**
+  * Bảng tra cứu giá trị phước báo tương ứng cho từng thiện hạnh.
+  * Lời nhắc nhở về giới luật, phòng tránh việc gian dối hay kiêu mạn.
+* **📜 Nhật Ký Hành Sự (Log):**
+  * Ghi lại chi tiết mốc thời gian và hành động mỗi khi bạn tích phước hoặc nhận phép thuật mới.
+* **💾 Tự Động Lưu Trữ (Local Storage):**
+  * Toàn bộ dữ liệu phước báo được lưu trực tiếp trên trình duyệt của bạn, không lo bị mất khi tải lại trang.
 
 ---
 
 ## 🛠️ Cấu Trúc Dự Án
 
-Dự án chỉ gồm một tệp duy nhất để tối ưu hoá việc chạy ngoại tuyến trên điện thoại:
+Dự án được xây dựng dưới dạng **Single Page Application (SPA)** hoàn chỉnh nằm trong 1 file duy nhất:
+
 ```text
-├── index.html    # Giao diện, mã nguồn CSS và Logic JavaScript tích hợp
-└── README.md     # Tài liệu hướng dẫn sử dụng dự án
+├── index.html       # Bao gồm HTML, CSS Styling và Logic JavaScript
+└── README.md        # Tài liệu hướng dẫn sử dụng
