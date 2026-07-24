@@ -49,8 +49,8 @@
     .custom-input-box label { font-size: 14px; font-weight: bold; color: var(--primary); }
     .custom-input-box.danger-box label { color: var(--danger); }
     .custom-input-box input { background-color: #121218; border: 1px solid #444; color: #fff; padding: 10px; border-radius: 6px; font-size: 13px; outline: none; }
-    .custom-input-box button { background-color: var(--success); border: none; color: #fff; font-weight: bold; padding: 11px; border-radius: 6px; cursor: pointer; }
-    .custom-input-box.danger-box button { background-color: var(--danger); }
+    .custom-input-box button { background-color: #4caf50; border: none; color: #fff; font-weight: bold; padding: 11px; border-radius: 6px; cursor: pointer; }
+    .custom-input-box.danger-box button { background-color: #f44336; }
     .item-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
     .item-card { background-color: #161622; border: 1px solid #334; border-radius: 8px; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
     .item-info { display: flex; flex-direction: column; }
@@ -80,13 +80,25 @@
     <h1>Luật Nhân Quả</h1>
     <p class="subtitle">Tích Luỹ Phước Báo - Cung Trời Hoá Lạc</p>
 
+    <!-- ỐNG PHƯỚC BÁO -->
     <div class="stats-card">
       <div class="stat-row">
-        <span>Phước Báo (Ống Năng Lượng):</span>
+        <span>Ống Phước Báo:</span>
         <span class="stat-value" id="phuoc-text">0 / 5.000.000.000.000.000</span>
       </div>
       <div class="progress-bar-container">
         <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- ỐNG NĂNG LƯỢNG -->
+    <div class="stats-card" style="border-color: var(--info);">
+      <div class="stat-row">
+        <span style="color: var(--info);">Ống Năng Lượng:</span>
+        <span class="stat-value" id="energy-text" style="color: var(--info);">0 / 5.000.000.000.000.000</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="energy-progress-bar" style="background: linear-gradient(90deg, #00bcd4, #2196f3);"></div>
       </div>
     </div>
 
@@ -211,11 +223,11 @@
     ];
 
     try {
-      if (localStorage.getItem('phuoc_bao_v7')) {
-        currentPhuoc = parseInt(localStorage.getItem('phuoc_bao_v7')) || 0;
+      if (localStorage.getItem('phuoc_bao_v8')) {
+        currentPhuoc = parseInt(localStorage.getItem('phuoc_bao_v8')) || 0;
       }
-      if (localStorage.getItem('owned_phap_bao_v7')) {
-        ownedItems = JSON.parse(localStorage.getItem('owned_phap_bao_v7')) || [];
+      if (localStorage.getItem('owned_phap_bao_v8')) {
+        ownedItems = JSON.parse(localStorage.getItem('owned_phap_bao_v8')) || [];
       }
     } catch(e) {}
 
@@ -251,7 +263,7 @@
       if (confirm('Xác nhận thỉnh "' + item.name + '"?')) {
         currentPhuoc -= item.price;
         ownedItems.push(item.id);
-        try { localStorage.setItem('owned_phap_bao_v7', JSON.stringify(ownedItems)); } catch(e) {}
+        try { localStorage.setItem('owned_phap_bao_v8', JSON.stringify(ownedItems)); } catch(e) {}
         updateUI();
         renderPhapBao();
         addLog('🎉 Đã thỉnh: ' + item.name + '!', 'purple');
@@ -265,14 +277,22 @@
       var percent = (currentPhuoc / MAX_PHUOC) * 100;
 
       var phuocEl = document.getElementById('phuoc-text');
+      var energyEl = document.getElementById('energy-text');
       var phepEl = document.getElementById('phep-text');
       var barEl = document.getElementById('progress-bar');
+      var energyBarEl = document.getElementById('energy-progress-bar');
 
-      if (phuocEl) phuocEl.innerText = currentPhuoc.toLocaleString('vi-VN') + ' / ' + MAX_PHUOC.toLocaleString('vi-VN');
+      var formattedText = currentPhuoc.toLocaleString('vi-VN') + ' / ' + MAX_PHUOC.toLocaleString('vi-VN');
+
+      if (phuocEl) phuocEl.innerText = formattedText;
+      if (energyEl) energyEl.innerText = formattedText;
       if (phepEl) phepEl.innerText = phepCount.toLocaleString('vi-VN') + ' Phép';
-      if (barEl) barEl.style.width = (percent > 0 && percent < 0.5 ? 0.5 : percent) + '%';
+      
+      var barWidth = (percent > 0 && percent < 0.5 ? 0.5 : percent) + '%';
+      if (barEl) barEl.style.width = barWidth;
+      if (energyBarEl) energyBarEl.style.width = barWidth;
 
-      try { localStorage.setItem('phuoc_bao_v7', currentPhuoc); } catch(e) {}
+      try { localStorage.setItem('phuoc_bao_v8', currentPhuoc); } catch(e) {}
     }
 
     function tichPhuoc(amount, actionName) {
@@ -320,8 +340,8 @@
         currentPhuoc = 0;
         ownedItems = [];
         try {
-          localStorage.removeItem('phuoc_bao_v7');
-          localStorage.removeItem('owned_phap_bao_v7');
+          localStorage.removeItem('phuoc_bao_v8');
+          localStorage.removeItem('owned_phap_bao_v8');
         } catch(e) {}
         updateUI();
         renderPhapBao();
