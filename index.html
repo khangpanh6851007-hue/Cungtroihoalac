@@ -16,7 +16,6 @@
       --success: #4caf50;
       --purple: #9c27b0;
     }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg);
@@ -27,320 +26,56 @@
       flex-direction: column;
       align-items: center;
     }
-
-    .container {
-      width: 100%;
-      max-width: 550px;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 5px;
-      font-size: 24px;
-    }
-
-    p.subtitle {
-      text-align: center;
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
-    .stats-card {
+    .container { width: 100%; max-width: 550px; }
+    h1 { text-align: center; color: var(--primary); margin-bottom: 5px; font-size: 24px; }
+    p.subtitle { text-align: center; font-size: 13px; color: #aaa; margin-top: 0; margin-bottom: 20px; }
+    .stats-card, .guide-card, .custom-input-box, .magic-section {
       background-color: var(--card-bg);
       border: 1px solid #333;
       border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
-    }
-
-    .stat-row {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-
-    .stat-value {
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 15px;
-      word-break: break-all;
-    }
-
-    .progress-bar-container {
-      width: 100%;
-      background-color: #333;
-      border-radius: 10px;
-      height: 18px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #ff9800, #ffd700);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .guide-card {
-      background-color: var(--card-bg);
-      border: 1px solid #334;
-      border-radius: 12px;
-      padding: 15px;
       margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-
-    .guide-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .guide-title {
-      font-weight: bold;
-      color: var(--primary);
-      font-size: 14px;
-    }
-
-    .guide-content {
-      margin-top: 12px;
-      font-size: 13px;
-      line-height: 1.5;
-      display: none;
-    }
-
-    .guide-content.show {
-      display: block;
-    }
-
-    .custom-input-box {
-      background-color: var(--card-bg);
-      border: 1px solid #334;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .custom-input-box label {
-      font-size: 14px;
-      font-weight: bold;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .custom-input-box input {
-      background-color: #121218;
-      border: 1px solid #444;
-      color: #fff;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      outline: none;
-    }
-
-    .custom-input-box input:focus {
-      border-color: var(--accent);
-    }
-
-    .custom-input-box button {
-      background-color: var(--success);
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      padding: 11px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .item-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .item-card {
-      background-color: #161622;
-      border: 1px solid #334;
-      border-radius: 8px;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .item-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .item-title {
-      font-weight: bold;
-      color: #e0e0e0;
-      font-size: 13px;
-    }
-
-    .item-price {
-      font-size: 11px;
-      color: var(--accent);
-      margin-top: 2px;
-      word-break: break-all;
-    }
-
-    .btn-buy {
-      background-color: #2e1e3e;
-      border: 1px solid var(--purple);
-      color: #d1c4e9;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn-buy.owned {
-      background-color: #1b3a20;
-      border-color: var(--success);
-      color: #81c784;
-      cursor: default;
-    }
-
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      background-color: var(--card-bg);
-      color: #fff;
-      border: 1px solid var(--accent);
-      padding: 12px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 13px;
-      transition: all 0.2s;
-      text-align: center;
-    }
-
-    button:active {
-      transform: scale(0.96);
-      background-color: var(--accent);
-    }
-
-    button.btn-reset {
-      grid-column: span 2;
-      border-color: var(--danger);
-      color: #ff8888;
-      background-color: #2a1515;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .magic-section {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      padding: 15px;
-      border: 1px dashed var(--primary);
-      text-align: center;
-    }
-
-    .magic-count {
-      font-size: 26px;
-      color: var(--primary);
-      font-weight: bold;
-      margin: 10px 0;
-      word-break: break-all;
-    }
-
-    .log-container {
-      margin-top: 20px;
-      background-color: #0a0a10;
-      border-radius: 8px;
-      padding: 10px;
-      height: 140px;
-      overflow-y: auto;
-      font-size: 12px;
-      border: 1px solid #222;
-    }
-
+    .stat-row { display: flex; flex-direction: column; gap: 5px; font-size: 14px; }
+    .stat-value { font-weight: bold; color: var(--primary); font-size: 15px; word-break: break-all; }
+    .progress-bar-container { width: 100%; background-color: #333; border-radius: 10px; height: 18px; overflow: hidden; margin-top: 8px; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #ff9800, #ffd700); width: 0%; transition: width 0.3s ease; }
+    .guide-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .guide-title { font-weight: bold; color: var(--primary); font-size: 14px; }
+    .guide-content { margin-top: 12px; font-size: 13px; line-height: 1.5; display: none; }
+    .guide-content.show { display: block; }
+    .custom-input-box { display: flex; flex-direction: column; gap: 10px; }
+    .custom-input-box label { font-size: 14px; font-weight: bold; color: var(--primary); }
+    .custom-input-box.danger-box label { color: var(--danger); }
+    .custom-input-box input { background-color: #121218; border: 1px solid #444; color: #fff; padding: 10px; border-radius: 6px; font-size: 13px; outline: none; }
+    .custom-input-box button { background-color: var(--success); border: none; color: #fff; font-weight: bold; padding: 11px; border-radius: 6px; cursor: pointer; }
+    .custom-input-box.danger-box button { background-color: var(--danger); }
+    .item-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+    .item-card { background-color: #161622; border: 1px solid #334; border-radius: 8px; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .item-info { display: flex; flex-direction: column; }
+    .item-title { font-weight: bold; color: #e0e0e0; font-size: 13px; }
+    .item-price { font-size: 11px; color: var(--accent); margin-top: 2px; }
+    .btn-buy { background-color: #2e1e3e; border: 1px solid var(--purple); color: #d1c4e9; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .btn-buy.owned { background-color: #1b3a20; border-color: var(--success); color: #81c784; cursor: default; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    button { background-color: var(--card-bg); color: #fff; border: 1px solid var(--accent); padding: 12px 10px; border-radius: 8px; cursor: pointer; font-size: 13px; text-align: center; }
+    button:active { transform: scale(0.96); background-color: var(--accent); }
+    button.btn-danger-action { border-color: var(--danger); color: #ff8888; background-color: #2a1515; }
+    button.btn-reset { grid-column: span 2; border-color: var(--danger); color: #ff8888; background-color: #2a1515; font-weight: bold; }
+    .magic-section { border: 1px dashed var(--primary); text-align: center; }
+    .magic-count { font-size: 26px; color: var(--primary); font-weight: bold; margin: 10px 0; word-break: break-all; }
+    .log-container { margin-top: 20px; background-color: #0a0a10; border-radius: 8px; padding: 10px; height: 140px; overflow-y: auto; font-size: 12px; border: 1px solid #222; }
     .log-item { margin-bottom: 4px; color: #bbb; }
     .log-item.highlight { color: var(--primary); }
     .log-item.danger { color: #ff6666; }
     .log-item.purple { color: #b388ff; }
-
-    .hoalac-desc {
-      background-color: rgba(255, 215, 0, 0.05);
-      border-left: 3px solid var(--primary);
-      padding: 10px;
-      margin-top: 8px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: #ddd;
-      border-radius: 0 6px 6px 0;
-    }
-
-    .hoalac-rules {
-      background-color: rgba(244, 67, 54, 0.08);
-      border: 1px solid rgba(244, 67, 54, 0.3);
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-top: 10px;
-    }
-
-    .hoalac-rules-title {
-      color: #ff7777;
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .hoalac-rules-list {
-      margin: 0;
-      padding-left: 16px;
-      font-size: 12px;
-      color: #ffb3b3;
-    }
-
-    .hoalac-rules-list li {
-      margin-bottom: 6px;
-    }
-
-    .thien-hanh-desc-list {
-      margin: 0;
-      padding-left: 16px;
-      font-size: 12px;
-      color: #dcdcdc;
-      line-height: 1.5;
-    }
-
-    .thien-hanh-desc-list li {
-      margin-bottom: 8px;
-    }
-
-    .thien-hanh-desc-list strong {
-      color: var(--primary);
-    }
+    .rule-box { background: rgba(255,152,0,0.05); border-left: 3px solid var(--accent); padding: 8px 12px; margin-top: 8px; font-size: 12px; line-height: 1.4; color: #ccc; }
+    .desc-list { margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.6; color: #ddd; }
+    .desc-list li { margin-bottom: 6px; }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h1>Luật Nhân Quả</h1>
     <p class="subtitle">Tích Luỹ Phước Báo - Cung Trời Hoá Lạc</p>
@@ -361,58 +96,56 @@
       <small style="color: #888;">(Cứ 100 Phước Báo = 1 Phép Thuật)</small>
     </div>
 
-    <div class="guide-card" style="margin-top: 20px; border-color: var(--primary);">
-      <div class="guide-header" onclick="toggleSection('hoalac-info-body', 'hoalac-info-icon')">
-        <span class="guide-title" style="color: var(--primary);">🏰 Mô Tả & Giới Luật Cung Trời Hóa Lạc</span>
-        <span id="hoalac-info-icon" style="color: var(--primary);">▼</span>
+    <!-- MÔ TẢ 10 THIỆN HẠNH & 4 ÁC NGHIỆP TẠI CUNG TRỜI HOÁ LẠC -->
+    <div class="guide-card" style="border-color: var(--accent);">
+      <div class="guide-header" onclick="toggleSection('guide-actions-body', 'guide-actions-icon')">
+        <span class="guide-title" style="color: var(--accent);">📖 Mô Tả 10 Thiện Hạnh & 4 Ác Nghiệp</span>
+        <span id="guide-actions-icon" style="color: var(--accent);">▼</span>
       </div>
-      <div class="guide-content" id="hoalac-info-body">
-        <div class="hoalac-desc">
-          <strong>🌌 Mô Tả Cung Trời Hóa Lạc (Hóa Tự Trong Thiên):</strong><br>
-          Cung Trời Hóa Lạc là cõi trời thứ 5 thuộc Cõi Dục. Chư thiên sống ở cõi này có khả năng đặc biệt: <em>Tự biến hóa ra mọi cảnh giới, đồ trang nghiêm, pháp bảo và niềm vui theo ý muốn dựa vào năng lượng phước báo của mình</em>.<br>
-          Mỗi <strong>100 Phước Báo</strong> tích lũy từ tâm từ bi và công đức thực tế sẽ ngưng tụ thành <strong>1 Phép Thuật</strong>.
-        </div>
-        <div class="hoalac-rules">
-          <div class="hoalac-rules-title">⛔ CÁC LƯU Ý CẤM KỲ TẠI CUNG TRỜI HÓA LẠC:</div>
-          <ul class="hoalac-rules-list">
-            <li><strong>Cấm Khai Khống / Dối Tỉnh:</strong> Tự cộng phước khi chưa thực sự làm việc thiện thực tế.</li>
-            <li><strong>Cấm Kiêu Mạn & Khinh Chê Chúng Sinh:</strong> Cậy mình có nhiều Phước / Phép mà coi thường người khác.</li>
-            <li><strong>Cấm Dùng Phép Thuật Làm Hại:</strong> Không dùng năng lượng cõi trời để tổn hại sinh linh khác.</li>
-            <li><strong>Cấm Sát Sinh, Ác Ngữ:</strong> Hành vi ác sẽ tàn phá ống năng lượng phước báo.</li>
-            <li><strong>Cấm Tham Cầu Vượt Giới Hạn:</strong> Không tự ý tăng vô độ số điểm phước báo không đúng bản chất công việc.</li>
+      <div class="guide-content" id="guide-actions-body">
+        
+        <div class="rule-box" style="border-color: var(--success);">
+          <strong style="color: var(--success);">✨ 10 Tạo Thiện Hạnh (Năng Lượng Phước Báo Cung Trời Hoá Lạc):</strong>
+          <ul class="desc-list" style="margin-top: 6px;">
+            <li><strong>1. Nói lời hòa nhã (+10 Phước - Khẩu):</strong> Giữ gìn ái ngữ, mang lại niềm vui hòa hợp cho mọi người xung quanh.</li>
+            <li><strong>2. Phóng sinh & Cứu mạng (+500 Phước - Đại Thiện):</strong> Bảo vệ sinh mạng, nuôi dưỡng lòng từ bi vô lượng.</li>
+            <li><strong>3. Hiếu kính bố mẹ (+10.000 Phước - Hiếu Đạo):</strong> Trọn tròn đạo làm con, cội nguồn của mọi phước đức lớn.</li>
+            <li><strong>4. Cho thuốc bệnh nhân (+20 Triệu Phước - Y Đạo):</strong> Cứu người bệnh hiểm nghèo, giảm nỗi đau thân xác.</li>
+            <li><strong>5. Làm từ thiện (+50 Triệu Phước - Từ Bi):</strong> Sẻ chia vật chất, giúp đỡ những mảnh đời khó khăn.</li>
+            <li><strong>6. Xây nhà tình thương (+1.000.000 Phước - An Cư):</strong> Tạo chỗ che mưa che nắng ổn định cho người nghèo.</li>
+            <li><strong>7. Cứu trợ thiên tai thảm họa (+100 Triệu Phước):</strong> Tương thân tương ái cứu giúp đồng bào trong hoạn nạn.</li>
+            <li><strong>8. Xây hàng trăm cầu đường & Trường học (+10 Tỷ Phước):</strong> Kiến tạo hạ tầng giao thông và trí tuệ cho thế hệ mai sau.</li>
+            <li><strong>9. Khai mở trí tuệ & Hộ trì Phật Pháp (+1 Nghìn Tỷ Phước):</strong> Gieo duyên chân lý, giúp chúng sinh thoát khỏi vô minh.</li>
+            <li><strong>10. Vô lượng công đức hộ sinh vạn vật (+100 Nghìn Tỷ Phước):</strong> Bảo vệ toàn diện sự sống và cân bằng sinh thái tự nhiên.</li>
           </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="guide-card" style="border-color: var(--info);">
-      <div class="guide-header" onclick="toggleSection('thien-hanh-body', 'thien-hanh-icon')">
-        <span class="guide-title" style="color: var(--info);">📖 Mô Tả Chi Tiết 10 Việc Thiện (Nút Tắt)</span>
-        <span id="thien-hanh-icon" style="color: var(--info);">▼</span>
-      </div>
-      <div class="guide-content" id="thien-hanh-body">
-        <ul class="thien-hanh-desc-list">
-          <li><strong>1. Nói lời hòa nhã (+10 Phước):</strong> Gieo duyên lành qua lời nói ái ngữ.</li>
-          <li><strong>2. Phóng sinh & Cứu mạng (+500 Phước):</strong> Bảo vệ và phóng thích các sinh linh.</li>
-          <li><strong>3. Hiếu kính bố mẹ (+10.000 Phước):</strong> Phụng dưỡng và làm vui lòng đấng sinh thành.</li>
-          <li><strong>4. Cho thuốc cho bệnh nhân (+20 Triệu Phước):</strong> Hỗ trợ thuốc men cho người đau ốm.</li>
-          <li><strong>5. Làm từ thiện (+50 Triệu Phước):</strong> Chia sẻ vật chất đến hoàn cảnh khó khăn.</li>
-          <li><strong>6. Xây nhà tình thương (+1.000.000 Phước):</strong> Góp phần xây dựng mái ấm kiên cố.</li>
-          <li><strong>7. Cứu trợ thiên tai thảm họa (+100 Triệu Phước):</strong> San sẻ kịp thời với đồng bào hoạn nạn.</li>
-          <li><strong>8. Xây hàng trăm cầu đường & Trường học (+10 Tỷ Phước):</strong> Kiến tạo hạ tầng lưu truyền hậu thế.</li>
-          <li><strong>9. Khai mở trí tuệ & Hộ trì Phật Pháp (+1 Nghìn Tỷ Phước):</strong> Ấn tống kinh sách, hỗ trợ hoằng pháp.</li>
-          <li><strong>10. Vô lượng công đức hộ sinh vạn vật (+100 Nghìn Tỷ Phước):</strong> Bảo hộ toàn diện sự sống muôn loài.</li>
-        </ul>
+        <div class="rule-box" style="border-color: var(--danger); margin-top: 12px;">
+          <strong style="color: var(--danger);">⚠️ 4 Tạo Ác Nghiệp / Sai Trái (Sụt Giảm Phước Báo):</strong>
+          <ul class="desc-list" style="margin-top: 6px;">
+            <li><strong>1. Nói lời ác ngữ / Sân hận (-50 Phước - Khẩu Nghiệp):</strong> Gieo rắc lời cay đắng, tổn thương người khác bằng lời nói.</li>
+            <li><strong>2. Sân hận, tranh chấp, nổi giận (-5.000 Phước - Tâm Sân):</strong> Để ngọn lửa sân hận đốt cháy công đức và sự bình an.</li>
+            <li><strong>3. Phỉ báng người khác / Khinh mạn (-1 Triệu Phước - Kiêu Mạn):</strong> Ngã mạn, coi thường chúng sinh, tự cô lập năng lượng chư thiên.</li>
+            <li><strong>4. Sát sinh / Tổn hại sinh linh (-50 Triệu Phước - Ác Nghiệp):</strong> Gây tổn hại trực tiếp đến sự sống, đọa lạc năng lượng cõi trời.</li>
+          </ul>
+        </div>
+
+        <div class="rule-box" style="margin-top: 12px; border-color: var(--primary);">
+          <strong style="color: var(--primary);">⛔ Giới Luật & Cấm Kỵ Cung Trời Hoá Lạc:</strong><br>
+          * Cấm khai khống, dối trá tích phước ảo.<br>
+          * Cấm dùng năng lực hóa lạc để ngã mạn, khinh chê.<br>
+          * Tuyệt đối không lạm dụng phép thuật vào mục đích ác ý.
+        </div>
+
       </div>
     </div>
 
     <div class="guide-card" style="border-color: var(--purple);">
       <div class="guide-header" onclick="toggleSection('item-body', 'item-icon')">
-        <span class="guide-title" style="color: #d1c4e9;">💎 10 Pháp Bảo Cung Trời Hoá Lạc (Đổi Phước)</span>
+        <span class="guide-title" style="color: #d1c4e9;">💎 10 Pháp Bảo Cung Trời Hoá Lạc</span>
         <span id="item-icon" style="color: var(--purple);">▼</span>
       </div>
       <div class="guide-content show" id="item-body">
-        <p style="margin-top: 5px; color: #aaa; font-size: 12px;">Sử dụng phước tích lũy để thỉnh Pháp Bảo Cõi Trời.</p>
         <div class="item-grid" id="item-list-container"></div>
       </div>
     </div>
@@ -421,27 +154,41 @@
       <label for="custom-action">📝 Ghi Nhận Việc Từ Thiện Thực Tế:</label>
       <input type="text" id="custom-action" placeholder="Nhập tên việc thiện..." />
       <input type="number" id="custom-amount" placeholder="Nhập số phước..." />
-      <button onclick="addCustomAction()">✨ Tích Phước Tùy Chỉnh</button>
+      <button type="button" onclick="addCustomAction()">✨ Tích Phước Tùy Chỉnh</button>
+    </div>
+
+    <div class="custom-input-box danger-box">
+      <label for="custom-bad-action">⚠️ Ghi Nhận Việc Sai Trái / Ác Nghiệp:</label>
+      <input type="text" id="custom-bad-action" placeholder="Nhập tên việc sai trái..." />
+      <input type="number" id="custom-bad-amount" placeholder="Nhập số phước bị trừ..." />
+      <button type="button" onclick="subCustomAction()">🔻 Trừ Phước Tùy Chỉnh</button>
     </div>
 
     <h3 style="margin-top: 10px; font-size: 16px;">Tạo Thiện Hạnh (Nút Tắt)</h3>
     <div class="actions">
-      <button onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
-      <button onclick="tichPhuoc(500, 'Phóng sinh & Cứu mạng')">+500 Phước (Đại Thiện)</button>
-      <button onclick="tichPhuoc(10000, 'Hiếu kính bố mẹ')">+10.000 Phước (Hiếu Đạo)</button>
-      <button onclick="tichPhuoc(20000000, 'Cho thuốc cho bệnh nhân')">+20 Triệu Phước (Y Đạo)</button>
-      <button onclick="tichPhuoc(50000000, 'Làm từ thiện')">+50 Triệu Phước (Từ Bi)</button>
-      <button onclick="tichPhuoc(1000000, 'Xây nhà tình thương')">+1.000.000 Phước (An Cư)</button>
-      <button onclick="tichPhuoc(100000000, 'Cứu trợ thiên tai thảm họa')">+100 Triệu Phước</button>
-      <button onclick="tichPhuoc(10000000000, 'Xây hàng trăm cầu đường & Trường học')">+10 Tỷ Phước</button>
-      <button onclick="tichPhuoc(1000000000000, 'Khai mở trí tuệ & Hộ trì Phật Pháp')">+1 Nghìn Tỷ Phước</button>
-      <button onclick="tichPhuoc(100000000000000, 'Vô lượng công đức hộ sinh vạn vật')">+100 Nghìn Tỷ Phước</button>
+      <button type="button" onclick="tichPhuoc(10, 'Nói lời hòa nhã')">+10 Phước (Khẩu)</button>
+      <button type="button" onclick="tichPhuoc(500, 'Phóng sinh & Cứu mạng')">+500 Phước (Đại Thiện)</button>
+      <button type="button" onclick="tichPhuoc(10000, 'Hiếu kính bố mẹ')">+10.000 Phước (Hiếu Đạo)</button>
+      <button type="button" onclick="tichPhuoc(20000000, 'Cho thuốc cho bệnh nhân')">+20 Triệu Phước (Y Đạo)</button>
+      <button type="button" onclick="tichPhuoc(50000000, 'Làm từ thiện')">+50 Triệu Phước (Từ Bi)</button>
+      <button type="button" onclick="tichPhuoc(1000000, 'Xây nhà tình thương')">+1.000.000 Phước (An Cư)</button>
+      <button type="button" onclick="tichPhuoc(100000000, 'Cứu trợ thiên tai thảm họa')">+100 Triệu Phước</button>
+      <button type="button" onclick="tichPhuoc(10000000000, 'Xây hàng trăm cầu đường & Trường học')">+10 Tỷ Phước</button>
+      <button type="button" onclick="tichPhuoc(1000000000000, 'Khai mở trí tuệ & Hộ trì Phật Pháp')">+1 Nghìn Tỷ Phước</button>
+      <button type="button" onclick="tichPhuoc(100000000000000, 'Vô lượng công đức hộ sinh vạn vật')">+100 Nghìn Tỷ Phước</button>
+    </div>
 
-      <button class="btn-reset" onclick="resetData()">🔄 Xóa Dữ Liệu & Bắt Đầu Lại</button>
+    <h3 style="margin-top: 10px; font-size: 16px; color: var(--danger);">Tạo Ác Nghiệp / Sai Trái (Nút Tắt)</h3>
+    <div class="actions">
+      <button type="button" class="btn-danger-action" onclick="truPhuoc(50, 'Nói lời ác ngữ / Sân hận')">-50 Phước (Khẩu Nghiệp)</button>
+      <button type="button" class="btn-danger-action" onclick="truPhuoc(5000, 'Sân hận, tranh chấp, nổi giận')">-5.000 Phước (Tâm Sân)</button>
+      <button type="button" class="btn-danger-action" onclick="truPhuoc(1000000, 'Phỉ báng người khác / Khinh mạn')">-1 Triệu Phước (Kiêu Mạn)</button>
+      <button type="button" class="btn-danger-action" onclick="truPhuoc(50000000, 'Sát sinh / Tổn hại sinh linh')">-50 Triệu Phước (Ác Nghiệp)</button>
+      <button type="button" class="btn-reset" onclick="resetData()">🔄 Xóa Dữ Liệu & Bắt Đầu Lại</button>
     </div>
 
     <div class="log-container" id="log-box">
-      <div class="log-item">Chào mừng bạn đến với Cung Trời Hoá Lạc. Hãy bắt đầu tích phước!</div>
+      <div class="log-item">Chào mừng bạn đến với Cung Trời Hoá Lạc.</div>
     </div>
   </div>
 
@@ -451,24 +198,24 @@
     var ownedItems = [];
 
     var phapBaoList = [
-      { id: 1, name: "🔮 Bồ Đề Tâm Châu", price: 5000000 },
-      { id: 2, name: "🌾 Như Ý Kim Bát", price: 20000000 },
-      { id: 3, name: "🧹 Tịnh Hóa Bụi Trần Hạt", price: 50000000 },
-      { id: 4, name: "🪞 Chiếu Yêu Minh Kính", price: 100000000 },
-      { id: 5, name: "🔔 Vô Lượng Âm Chuông Trời", price: 300000000 },
-      { id: 6, name: "🌿 Cam Lộ Bình Hộ Sinh", price: 500000000 },
-      { id: 7, name: "📜 Cung Trời Hóa Lạc Sách", price: 1000000000 },
-      { id: 8, name: "🛡️ Trang Nghiêm Phước Bảo Giáp", price: 2500000000 },
-      { id: 9, name: "🪷 Thất Bảo Liên Hoa Đài", price: 5000000000 },
-      { id: 10, name: "👑 Hóa Lạc Thiên Vương Vương Miện", price: 5000000000000000 }
+      { id: 1, name: '🔮 Bồ Đề Tâm Châu', price: 5000000 },
+      { id: 2, name: '🌾 Như Ý Kim Bát', price: 20000000 },
+      { id: 3, name: '🧹 Tịnh Hóa Bụi Trần Hạt', price: 50000000 },
+      { id: 4, name: '🪞 Chiếu Yêu Minh Kính', price: 100000000 },
+      { id: 5, name: '🔔 Vô Lượng Âm Chuông Trời', price: 300000000 },
+      { id: 6, name: '🌿 Cam Lộ Bình Hộ Sinh', price: 500000000 },
+      { id: 7, name: '📜 Cung Trời Hóa Lạc Sách', price: 1000000000 },
+      { id: 8, name: '🛡️ Trang Nghiêm Phước Bảo Giáp', price: 2500000000 },
+      { id: 9, name: '🪷 Thất Bảo Liên Hoa Đài', price: 5000000000 },
+      { id: 10, name: '👑 Hóa Lạc Thiên Vương Vương Miện', price: 5000000000000000 }
     ];
 
     try {
-      if (localStorage.getItem('phuoc_bao_v2')) {
-        currentPhuoc = parseInt(localStorage.getItem('phuoc_bao_v2')) || 0;
+      if (localStorage.getItem('phuoc_bao_v7')) {
+        currentPhuoc = parseInt(localStorage.getItem('phuoc_bao_v7')) || 0;
       }
-      if (localStorage.getItem('owned_phap_bao')) {
-        ownedItems = JSON.parse(localStorage.getItem('owned_phap_bao')) || [];
+      if (localStorage.getItem('owned_phap_bao_v7')) {
+        ownedItems = JSON.parse(localStorage.getItem('owned_phap_bao_v7')) || [];
       }
     } catch(e) {}
 
@@ -476,26 +223,20 @@
       var container = document.getElementById('item-list-container');
       if (!container) return;
       container.innerHTML = '';
-
       phapBaoList.forEach(function(item) {
         var isOwned = ownedItems.indexOf(item.id) !== -1;
-        
         var card = document.createElement('div');
         card.className = 'item-card';
-
         var info = document.createElement('div');
         info.className = 'item-info';
-        info.innerHTML = '<span class="item-title">' + item.name + '</span>' +
-                         '<span class="item-price">Giá: ' + item.price.toLocaleString('vi-VN') + ' Phước</span>';
-
+        info.innerHTML = '<span class="item-title">' + item.name + '</span><span class="item-price">Giá: ' + item.price.toLocaleString('vi-VN') + ' Phước</span>';
         var btn = document.createElement('button');
+        btn.type = 'button';
         btn.className = 'btn-buy' + (isOwned ? ' owned' : '');
         btn.innerText = isOwned ? 'Đã Sở Hữu' : 'Thỉnh Pháp Bảo';
-        
         if (!isOwned) {
           btn.onclick = function() { buyPhapBao(item); };
         }
-
         card.appendChild(info);
         card.appendChild(btn);
         container.appendChild(card);
@@ -504,27 +245,22 @@
 
     function buyPhapBao(item) {
       if (currentPhuoc < item.price) {
-        alert("Bạn chưa đủ Phước Báo! Cần thêm " + (item.price - currentPhuoc).toLocaleString('vi-VN') + " phước.");
+        alert('Bạn chưa đủ Phước Báo!');
         return;
       }
-
-      if (confirm("Xác nhận dùng " + item.price.toLocaleString('vi-VN') + " Phước để thỉnh \"" + item.name + "\"?")) {
+      if (confirm('Xác nhận thỉnh "' + item.name + '"?')) {
         currentPhuoc -= item.price;
         ownedItems.push(item.id);
-        
-        try {
-          localStorage.setItem('owned_phap_bao', JSON.stringify(ownedItems));
-        } catch(e) {}
-        
+        try { localStorage.setItem('owned_phap_bao_v7', JSON.stringify(ownedItems)); } catch(e) {}
         updateUI();
         renderPhapBao();
-        addLog("🎉 Đã thỉnh: " + item.name + "!", 'purple');
+        addLog('🎉 Đã thỉnh: ' + item.name + '!', 'purple');
       }
     }
 
     function updateUI() {
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
-
+      if (currentPhuoc < 0) currentPhuoc = 0;
       var phepCount = Math.floor(currentPhuoc / 100);
       var percent = (currentPhuoc / MAX_PHUOC) * 100;
 
@@ -532,93 +268,86 @@
       var phepEl = document.getElementById('phep-text');
       var barEl = document.getElementById('progress-bar');
 
-      if (phuocEl) phuocEl.innerText = currentPhuoc.toLocaleString('vi-VN') + " / " + MAX_PHUOC.toLocaleString('vi-VN');
-      if (phepEl) phepEl.innerText = phepCount.toLocaleString('vi-VN') + " Phép";
-      
-      var displayPercent = (percent > 0 && percent < 0.5) ? 0.5 : percent;
-      if (barEl) barEl.style.width = displayPercent + "%";
+      if (phuocEl) phuocEl.innerText = currentPhuoc.toLocaleString('vi-VN') + ' / ' + MAX_PHUOC.toLocaleString('vi-VN');
+      if (phepEl) phepEl.innerText = phepCount.toLocaleString('vi-VN') + ' Phép';
+      if (barEl) barEl.style.width = (percent > 0 && percent < 0.5 ? 0.5 : percent) + '%';
 
-      try {
-        localStorage.setItem('phuoc_bao_v2', currentPhuoc);
-      } catch(e) {}
+      try { localStorage.setItem('phuoc_bao_v7', currentPhuoc); } catch(e) {}
     }
 
     function tichPhuoc(amount, actionName) {
-      if (currentPhuoc >= MAX_PHUOC) {
-        addLog("Bạn đã đạt tối đa 5.000.000.000.000.000 Phước Báo!");
-        return;
-      }
-
-      var oldPhep = Math.floor(currentPhuoc / 100);
+      if (currentPhuoc >= MAX_PHUOC) return;
       currentPhuoc += amount;
       if (currentPhuoc > MAX_PHUOC) currentPhuoc = MAX_PHUOC;
-      
-      var newPhep = Math.floor(currentPhuoc / 100);
-
       updateUI();
-      addLog("Bạn đã làm: \"" + actionName + "\" -> +" + amount.toLocaleString('vi-VN') + " Phước.");
+      addLog('Làm: "' + actionName + '" -> +' + amount.toLocaleString('vi-VN') + ' Phước.');
+    }
 
-      if (newPhep > oldPhep) {
-        var addedPhep = newPhep - oldPhep;
-        addLog("✨ Cung Trời Hoá Lạc: +" + addedPhep.toLocaleString('vi-VN') + " Phép Thuật!", 'highlight');
-      }
+    function truPhuoc(amount, actionName) {
+      if (currentPhuoc <= 0) return;
+      currentPhuoc -= amount;
+      if (currentPhuoc < 0) currentPhuoc = 0;
+      updateUI();
+      addLog('Phạm lỗi: "' + actionName + '" -> -' + amount.toLocaleString('vi-VN') + ' Phước.', 'danger');
     }
 
     function addCustomAction() {
       var actionInput = document.getElementById('custom-action');
       var amountInput = document.getElementById('custom-amount');
       if (!actionInput || !amountInput) return;
+      var name = actionInput.value.trim();
+      var amt = parseInt(amountInput.value);
+      if (!name || isNaN(amt) || amt <= 0) { alert('Nhập đúng thông tin!'); return; }
+      tichPhuoc(amt, name);
+      actionInput.value = '';
+      amountInput.value = '';
+    }
 
-      var actionName = actionInput.value.trim();
-      var amount = parseInt(amountInput.value);
-
-      if (!actionName || isNaN(amount) || amount <= 0) {
-        alert("Vui lòng nhập tên việc thiện và số phước hợp lệ!");
-        return;
-      }
-
-      tichPhuoc(amount, actionName + ' (Thực tế)');
+    function subCustomAction() {
+      var actionInput = document.getElementById('custom-bad-action');
+      var amountInput = document.getElementById('custom-bad-amount');
+      if (!actionInput || !amountInput) return;
+      var name = actionInput.value.trim();
+      var amt = parseInt(amountInput.value);
+      if (!name || isNaN(amt) || amt <= 0) { alert('Nhập đúng thông tin!'); return; }
+      truPhuoc(amt, name);
       actionInput.value = '';
       amountInput.value = '';
     }
 
     function resetData() {
-      if (confirm("Bạn có chắc muốn Reset toàn bộ về 0 không?")) {
+      if (confirm('Xóa toàn bộ dữ liệu?')) {
         currentPhuoc = 0;
         ownedItems = [];
         try {
-          localStorage.removeItem('phuoc_bao_v2');
-          localStorage.removeItem('owned_phap_bao');
+          localStorage.removeItem('phuoc_bao_v7');
+          localStorage.removeItem('owned_phap_bao_v7');
         } catch(e) {}
         updateUI();
         renderPhapBao();
-        addLog("⚠️ Đã khởi tạo lại toàn bộ Phước Báo và Pháp Bảo.", 'danger');
+        addLog('⚠️ Đã reset dữ liệu.', 'danger');
       }
     }
 
     function toggleSection(bodyId, iconId) {
-      var bodyEl = document.getElementById(bodyId);
-      var iconEl = document.getElementById(iconId);
-      if (!bodyEl || !iconEl) return;
-      
-      if (bodyEl.classList.contains('show')) {
-        bodyEl.classList.remove('show');
-        iconEl.innerText = '▼';
+      var body = document.getElementById(bodyId);
+      var icon = document.getElementById(iconId);
+      if (!body || !icon) return;
+      if (body.classList.contains('show')) {
+        body.classList.remove('show');
+        icon.innerText = '▼';
       } else {
-        bodyEl.classList.add('show');
-        iconEl.innerText = '▲';
+        body.classList.add('show');
+        icon.innerText = '▲';
       }
     }
 
     function addLog(text, type) {
-      type = type || '';
       var logBox = document.getElementById('log-box');
       if (!logBox) return;
-
       var item = document.createElement('div');
-      item.className = 'log-item' + (type ? ' ' + type : '');
-      var time = new Date().toLocaleTimeString('vi-VN');
-      item.innerText = "[" + time + "] " + text;
+      item.className = 'log-item ' + (type || '');
+      item.innerText = '[' + new Date().toLocaleTimeString('vi-VN') + '] ' + text;
       logBox.insertBefore(item, logBox.firstChild);
     }
 
